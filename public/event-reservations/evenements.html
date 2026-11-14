@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <title>GreenTechHub | Événements Écologiques</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="événements écologiques, conférences vertes, ateliers durables" name="keywords">
+  <meta content="Découvrez et participez aux événements écologiques organisés par GreenTechHub" name="description">
+
+  <!-- Favicons -->
+  <link href="mvc/Public/img/favicon.ico" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300|Nunito:400,700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="mvc/Public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="mvc/Public/vendor/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="mvc/Public/vendor/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="mvc/Public/vendor/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link href="mvc/Public/css/style.css" rel="stylesheet">
+
+  <!-- Custom Events Styles -->
+  <style>
+    .event-card {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 25px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      border-left: 4px solid #1dbf73;
+    }
+
+    .event-card:hover {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      transform: translateY(-3px);
+    }
+
+    .event-card h4 {
+      color: #353535;
+      font-size: 22px;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+
+    .event-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 15px;
+      font-size: 14px;
+      color: #656565;
+    }
+
+    .event-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .event-meta-item i {
+      color: #1dbf73;
+    }
+
+    .event-category {
+      display: inline-block;
+      padding: 5px 15px;
+      background: #1dbf73;
+      color: white;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .event-description {
+      color: #656565;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .event-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 15px;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    .event-price {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1dbf73;
+    }
+
+    .event-places {
+      font-size: 14px;
+      color: #656565;
+    }
+
+    .btn-reserve {
+      background: #1dbf73;
+      color: white;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .btn-reserve:hover {
+      background: #353535;
+      color: white;
+    }
+
+    .no-events {
+      text-align: center;
+      padding: 60px 20px;
+      color: #656565;
+    }
+
+    .no-events i {
+      font-size: 64px;
+      color: #1dbf73;
+      margin-bottom: 20px;
+    }
+
+    /* Modal Styles */
+    .modal-content {
+      border-radius: 8px;
+      border: none;
+    }
+
+    .modal-header {
+      background: #1dbf73;
+      color: white;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .modal-header .btn-close {
+      filter: brightness(0) invert(1);
+    }
+
+    .form-control:focus {
+      border-color: #1dbf73;
+      box-shadow: 0 0 0 0.2rem rgba(29, 191, 115, 0.25);
+    }
+
+    .filter-section {
+      background: #f2f2f2;
+      padding: 30px 0;
+      margin-bottom: 40px;
+    }
+
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .filter-btn {
+      padding: 8px 20px;
+      background: white;
+      border: 2px solid #1dbf73;
+      color: #1dbf73;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: #1dbf73;
+      color: white;
+    }
+
+    /* Chatbot Message Styles */
+    .message {
+      max-width: 80%;
+      padding: 0.75rem 1rem;
+      margin: 0.5rem 0;
+      border-radius: 15px;
+      line-height: 1.4;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .message.user {
+      background: linear-gradient(135deg, #1e90ff 0%, #1dbf73 100%);
+      color: white;
+      margin-left: auto;
+      text-align: right;
+      border-bottom-right-radius: 4px;
+      box-shadow: 0 2px 10px rgba(30, 144, 255, 0.3);
+    }
+
+    .message.bot {
+      background: linear-gradient(135deg, #444 0%, #555 100%);
+      color: #eee;
+      margin-right: auto;
+      text-align: left;
+      border-bottom-left-radius: 4px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-chat-send:hover {
+      background: #353535 !important;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(29, 191, 115, 0.4);
+    }
+
+    #chat-log::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    #chat-log::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+    }
+
+    #chat-log::-webkit-scrollbar-thumb {
+      background: #1dbf73;
+      border-radius: 10px;
+    }
+
+    #chat-log::-webkit-scrollbar-thumb:hover {
+      background: #353535;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header Section Start -->
+  <header class="header">
+    <div class="container-fluid">
+      <div class="logo pull-left">
+        <h1><a href="index.html">GreenTechHub</a></h1>
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="index.html#about">À Propos</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#innovations">Innovations</a></li>
+          <li class="menu-active"><a href="evenements.html">Événements</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+          <li><a href="admin.html">Administration</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <!-- Header Section End -->
+
+  <!-- Banner Section Start-->
+  <section class="banner">
+    <div class="container">
+      <div class="col-lg-12">
+        <div class="banner-nav">
+          <div class="banner-box">
+            <a href="index.html">Accueil </a>
+            <a href="evenements.html">Événements</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Banner Section End-->
+
+  <!-- Events Section Start -->
+  <section class="services" style="padding: 80px 0;">
+    <div class="container">
+      <header class="section-header">
+        <h3>Événements Écologiques</h3>
+        <p>
+          Participez à nos événements dédiés à l'innovation écologique et au développement durable. Conférences,
+          ateliers, salons et bien plus encore.
+        </p>
+      </header>
+
+      <!-- Filter Section -->
+      <div class="filter-section">
+        <div class="container">
+          <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">Tous</button>
+            <button class="filter-btn" data-filter="Atelier">Ateliers</button>
+            <button class="filter-btn" data-filter="Conférence">Conférences</button>
+            <button class="filter-btn" data-filter="Salon">Salons</button>
+            <button class="filter-btn" data-filter="Forum">Forums</button>
+            <button class="filter-btn" data-filter="Activité">Activités</button>
+            <button class="filter-btn" data-filter="Festival">Festivals</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Events List -->
+      <div class="row">
+        <div class="col-lg-12">
+          <div id="eventsList">
+            <!-- Events will be loaded here by JavaScript -->
+            <div class="no-events">
+              <i class="ion-ios-calendar"></i>
+              <h4>Chargement des événements...</h4>
+              <p>Veuillez patienter pendant que nous chargeons les événements disponibles.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Events Section End -->
+
+  <!-- AI Chatbot Section Start -->
+  <section class="game-section" style="padding: 80px 0; background: linear-gradient(135deg, #353535 0%, #1dbf73 100%);">
+    <div class="container">
+      <h2 class="section-title"
+        style="text-align: center; color: white; font-size: 36px; margin-bottom: 20px; text-transform: uppercase; font-weight: 700;">
+        AI Chatbot - GreenTechHub</h2>
+      <p style="text-align: center; color: rgba(255,255,255,0.9); margin-bottom: 40px; font-size: 16px;">Posez vos
+        questions sur les evenements de greentechhub et sur les reservations</p>
+
+      <div
+        style="background: rgba(30, 30, 46, 0.7); padding: 2rem; border-radius: 15px; max-width: 700px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
+        <div id="chat-log"
+          style="max-height: 400px; overflow-y: auto; margin-bottom: 1rem; background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 10px;">
+          <div class="message bot">☁️ Bienvenue ! Je suis votre assistant IA pour <strong>GreenTechHub events &
+              Reservations</strong>.
+            Posez-moi vos questions !</div>
+        </div>
+        <textarea id="chat-input" class="form-control" placeholder="Tape ta question..." rows="2"
+          style="margin-bottom: 1rem; background: rgba(255,255,255,0.9); border: none; border-radius: 8px; padding: 12px; font-size: 14px; resize: none;"></textarea>
+        <button class="btn-chat-send" onclick="sendChat()"
+          style="width: 100%; background: #1dbf73; color: white; padding: 12px 25px; border: none; border-radius: 8px; font-weight: 600; font-size: 16px; cursor: pointer; transition: all 0.3s ease;">Envoyer</button>
+      </div>
+    </div>
+  </section>
+  <!-- AI Chatbot Section End -->
+
+  <!-- Footer Start -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 footer-info">
+            <h3>GreenTechHub</h3>
+            <p>
+              Plateforme collaborative dédiée à l'innovation écologique et au développement durable. Ensemble,
+              construisons un avenir plus vert pour les générations futures.
+            </p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Liens Utiles</h4>
+            <ul>
+              <li><i class="ion-md-arrow-dropright"></i> <a href="index.html#about">À Propos</a></li>
+              <li><i class="ion-md-arrow-dropright"></i> <a href="index.html#services">Services</a></li>
+              <li><i class="ion-md-arrow-dropright"></i> <a href="index.html#innovations">Innovations</a></li>
+              <li><i class="ion-md-arrow-dropright"></i> <a href="evenements.html">Événements</a></li>
+              <li><i class="ion-md-arrow-dropright"></i> <a href="dashboard.html">Dashboard</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h4>Contactez-Nous</h4>
+            <p>
+              123 Avenue Verte<br>
+              Paris, France<br>
+              <strong>Téléphone:</strong> +33 1 23 45 67 89<br>
+              <strong>Email:</strong> contact@greentechhub.fr<br>
+            </p>
+
+            <div class="social-links">
+              <a href="#"><i class="ion-logo-twitter"></i></a>
+              <a href="#"><i class="ion-logo-facebook"></i></a>
+              <a href="#"><i class="ion-logo-linkedin"></i></a>
+              <a href="#"><i class="ion-logo-instagram"></i></a>
+            </div>
+
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-newsletter">
+            <h4>Newsletter</h4>
+            <p>Restez informé des derniers événements écologiques. Inscrivez-vous à notre newsletter.</p>
+            <form action="" method="post">
+              <input type="email" name="email" placeholder="Votre email"><input type="submit" value="S'inscrire">
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong>GreenTechHub</strong>. Tous droits réservés<br>
+        Template adapté de <a href="https://htmlcodex.com">HTML Codex</a>
+      </div>
+    </div>
+  </footer>
+  <!-- Footer End -->
+
+  <a href="#" class="back-to-top"><i class="ion-md-arrow-dropup"></i></a>
+
+  <!-- Reservation Modal -->
+  <div class="modal fade" id="reservationModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalEventTitle">Réserver un Événement</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="reservationName" class="form-label">Nom Complet *</label>
+            <input type="text" id="reservationName" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label for="reservationEmail" class="form-label">Email *</label>
+            <input type="email" id="reservationEmail" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label for="placesInput" class="form-label">Nombre de places *</label>
+            <input type="number" id="placesInput" class="form-control" min="1" max="10" value="1" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary"
+            onclick="$('#reservationModal').modal('hide');">Annuler</button>
+          <button type="button" class="btn btn-primary" id="confirmReservationBtn"
+            style="background: #1dbf73; border-color: #1dbf73;">Confirmer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vendor JS Files -->
+  <script src="mvc/Public/vendor/jquery/jquery.min.js"></script>
+  <script src="mvc/Public/vendor/jquery/jquery-migrate.min.js"></script>
+  <script src="mvc/Public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="mvc/Public/vendor/easing/easing.min.js"></script>
+  <script src="mvc/Public/vendor/superfish/hoverIntent.js"></script>
+  <script src="mvc/Public/vendor/superfish/superfish.min.js"></script>
+  <script src="mvc/Public/vendor/waypoints/waypoints.min.js"></script>
+  <script src="mvc/Public/vendor/touchSwipe/jquery.touchSwipe.min.js"></script>
+  <script src="mvc/Public/vendor/counterup/counterup.min.js"></script>
+  <script src="mvc/Public/vendor/owlcarousel/owl.carousel.min.js"></script>
+  <script src="mvc/Public/vendor/isotope/isotope.pkgd.min.js"></script>
+  <script src="mvc/Public/vendor/lightbox/js/lightbox.min.js"></script>
+
+  <!-- Main Javascript File -->
+  <script src="mvc/Public/js/main.js"></script>
+
+  <!-- Events Custom Script -->
+  <script>
+    // Events data and functionality
+    let currentFilter = 'all';
+    let currentEventId = null;
+    let eventsData = [];
+
+    // Load events from API
+    async function loadEvents() {
+      try {
+        const response = await fetch('events_api.php?action=get_events');
+        const data = await response.json();
+
+        if (data.success && data.events) {
+          eventsData = data.events;
+          displayEvents(eventsData);
+        } else {
+          showNoEvents('Aucun événement disponible pour le moment.');
+        }
+      } catch (error) {
+        console.error('Error loading events:', error);
+        showNoEvents('Erreur lors du chargement des événements.');
+      }
+    }
+
+    // Display events
+    function displayEvents(events) {
+      const container = document.getElementById('eventsList');
+
+      if (!events || events.length === 0) {
+        showNoEvents('Aucun événement trouvé pour cette catégorie.');
+        return;
+      }
+
+      let html = '';
+      events.forEach(event => {
+        // Skip if filter is active and doesn't match
+        if (currentFilter !== 'all' && event.categorie !== currentFilter) {
+          return;
+        }
+
+        const eventDate = new Date(event.date_event);
+        const formattedDate = eventDate.toLocaleDateString('fr-FR', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+
+        const placesRestantes = event.places_restantes || 0;
+        const isFull = placesRestantes <= 0;
+
+
+        html += `
+          <div class="event-card" data-category="${event.categorie || 'Autre'}">
+            <span class="event-category">${event.categorie || 'Autre'}</span>
+            <h4>${event.titre}</h4>
+            <div class="event-meta">
+              <div class="event-meta-item">
+                <i class="ion-ios-calendar"></i>
+                <span>${formattedDate}</span>
+              </div>
+              ${event.heure_debut ? `
+              <div class="event-meta-item">
+                <i class="ion-ios-time"></i>
+                <span>${event.heure_debut}${event.heure_fin ? ' - ' + event.heure_fin : ''}</span>
+              </div>
+              ` : ''}
+              ${event.lieu ? `
+              <div class="event-meta-item">
+                <i class="ion-ios-pin"></i>
+                <span>${event.lieu}</span>
+              </div>
+              ` : ''}
+            </div>
+            ${event.description ? `
+            <p class="event-description">${event.description}</p>
+            ` : ''}
+            <div class="event-footer">
+              <div>
+                <div class="event-price">${event.prix > 0 ? event.prix + ' DT' : 'Gratuit'}</div>
+                <div class="event-places">
+                  <i class="ion-ios-people"></i> 
+                  ${placesRestantes} place${placesRestantes > 1 ? 's' : ''} restante${placesRestantes > 1 ? 's' : ''}
+                </div>
+
+              </div>
+              <button 
+                class="btn-reserve" 
+                onclick="openReservationModal(${event.id_event}, '${event.titre.replace(/'/g, "\\'")}')"
+                ${isFull ? 'disabled' : ''}
+              >
+                ${isFull ? 'Complet' : 'Réserver'}
+              </button>
+            </div>
+          </div>
+        `;
+      });
+
+      if (html === '') {
+        showNoEvents('Aucun événement trouvé pour cette catégorie.');
+      } else {
+        container.innerHTML = html;
+      }
+    }
+
+    // Show no events message
+    function showNoEvents(message) {
+      const container = document.getElementById('eventsList');
+      container.innerHTML = `
+        <div class="no-events">
+          <i class="ion-ios-calendar"></i>
+          <h4>Aucun événement</h4>
+          <p>${message}</p>
+        </div>
+      `;
+    }
+
+    // Open reservation modal
+    function openReservationModal(eventId, eventTitle) {
+      currentEventId = eventId;
+      document.getElementById('modalEventTitle').textContent = 'Réserver: ' + eventTitle;
+
+      $('#reservationModal').modal('show');
+    }
+
+    // Confirm reservation
+    document.getElementById('confirmReservationBtn').addEventListener('click', async function () {
+      const name = document.getElementById('reservationName').value;
+      const email = document.getElementById('reservationEmail').value;
+      const places = document.getElementById('placesInput').value;
+
+      if (!name || !email || !places) {
+        alert('Veuillez remplir tous les champs obligatoires.');
+        return;
+      }
+
+      try {
+        // Create FormData for POST request
+        const formData = new FormData();
+        formData.append('id_event', currentEventId);
+        formData.append('nom_utilisateur', name);
+        formData.append('email_utilisateur', email);
+        formData.append('quantite', parseInt(places));
+
+        const response = await fetch('events_api.php?action=reserve_event', {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          alert('Réservation confirmée ! Vous recevrez un email de confirmation.');
+
+          // Close modal
+          $('#reservationModal').modal('hide');
+
+          // Reset form
+          document.getElementById('reservationName').value = '';
+          document.getElementById('reservationEmail').value = '';
+          document.getElementById('placesInput').value = '1';
+
+          // Reload events to update available places
+          loadEvents();
+
+          // Log profit update notification
+          console.log('Réservation enregistrée - Le profit sera mis à jour après confirmation par l\'administrateur');
+        } else {
+          alert('Erreur: ' + (data.message || 'Impossible de réserver.'));
+        }
+      } catch (error) {
+        console.error('Error making reservation:', error);
+        alert('Erreur lors de la réservation. Veuillez réessayer.');
+      }
+    });
+
+    // Filter events
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', function () {
+        // Update active state
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+
+        // Update filter
+        currentFilter = this.getAttribute('data-filter');
+        displayEvents(eventsData);
+      });
+    });
+
+    // Load events on page load
+    document.addEventListener('DOMContentLoaded', function () {
+      loadEvents();
+    });
+
+    // ===== AI CHATBOT FUNCTIONALITY =====
+    let chatHistory = [
+      {
+        role: "system",
+        content: `You are GreenTechHub's event assistant. Keep responses under 20 words.
+
+ABOUT GREENTECHHUB:
+- Platform for ecological innovation and sustainable development events in Tunisia
+- Focus: green technology, environment, sustainability
+- Contact: contact@greentechhub.tn
+- Location: All events in Tunisia (Tunis, Monastir, etc.)
+
+EVENT CATEGORIES (6 types):
+1. Ateliers - Hands-on workshops
+2. Conférences - Talks and presentations  
+3. Salons - Trade shows and exhibitions
+4. Forums - Discussion panels
+5. Activités - Eco activities
+6. Festivals - Green festivals
+
+HOW TO USE THE WEBSITE:
+- Browse events on main page
+- Filter by category using buttons above
+- Each card shows: title, date, time, location, price, available seats
+- Click "Réserver" to book
+- Fill in: name, email, number of seats
+- Reservation pending until admin confirms
+- Full events show "Complet" (no booking)
+
+RESERVATION PROCESS:
+1. User fills reservation form
+2. Status: "en_attente" (pending)
+3. Admin reviews and confirms
+4. Status becomes "confirmee" (confirmed)
+5. User receives email confirmation
+
+PRICING:
+- Some events free (Gratuit)
+- Others paid (price in DT - Tunisian Dinar)
+
+COMMON QUESTIONS:
+
+Q: "What is GreenTechHub?"
+A: "Platform for ecological and sustainable development events in Tunisia."
+
+Q: "What events?"
+A: "Ateliers, Conférences, Salons, Forums, Activités, Festivals."
+
+Q: "How to reserve?"
+A: "Click 'Réserver', enter name, email, seats wanted."
+
+Q: "Where are events?"
+A: "All events are in Tunisia (cities like Tunis, Monastir)."
+
+Q: "Event cost?"
+A: "Some free, others paid. Price shown on event card."
+
+Q: "How to cancel?"
+A: "Email contact@greentechhub.fr with your reservation details."
+
+Q: "Check availability?"
+A: "Event cards show remaining seats."
+
+Q: "Filter events?"
+A: "Click category buttons (Ateliers, Conférences, etc.) above events."
+
+Q: "When confirmed?"
+A: "Admin reviews reservations. You'll receive email confirmation."
+
+Q: "What's an Atelier?"
+A: "Hands-on workshop about ecological topics."
+
+Q: "What's a Salon?"
+A: "Trade show or exhibition for green technology."
+
+RULES:
+- Stay under 30 words
+- Be helpful and informative
+- Only discuss GreenTechHub events
+- NEVER mention: profit, revenue, earnings, or any admin-only data
+- Off-topic: "I only help with GreenTechHub events."`
+      }
+    ];
+
+    // Fetch real-time event data for chatbot
+    let currentEventsData = [];
+
+    async function updateChatbotWithEvents() {
+      try {
+        const response = await fetch('events_api.php?action=get_events');
+        const data = await response.json();
+        if (data.success && data.events) {
+          currentEventsData = data.events;
+        }
+      } catch (error) {
+        console.error('Error fetching events for chatbot:', error);
+      }
+    }
+
+    // Load events when page loads
+    updateChatbotWithEvents();
+
+    // Get formatted events for chatbot (PUBLIC INFO ONLY)
+    function getEventsContext() {
+      if (currentEventsData.length === 0) return "No events available.";
+
+      const eventsInfo = currentEventsData.slice(0, 10).map(e => {
+        const price = e.prix > 0 ? `${e.prix} DT` : 'Free';
+        const seats = e.places_restantes || 0;
+        const time = e.heure_debut ? ` at ${e.heure_debut}` : '';
+        return `- ${e.titre} (${e.categorie}) on ${e.date_event}${time} in ${e.lieu}, Price: ${price}, ${seats} seats available`;
+      }).join('\n');
+
+      return `LIVE EVENTS (${currentEventsData.length} total):\n${eventsInfo}\n\nIMPORTANT: NEVER mention profit, revenue, or any admin-only data!`;
+    }
+
+    async function sendChat() {
+      const input = document.getElementById('chat-input').value.trim();
+      if (!input) return;
+
+      const chatLog = document.getElementById('chat-log');
+      chatLog.innerHTML += `<div class="message user">${escapeHtml(input)}</div>`;
+      document.getElementById('chat-input').value = '';
+      chatLog.scrollTop = chatLog.scrollHeight;
+
+      // Add user message to history
+      chatHistory.push({ role: "user", content: input });
+
+      // Refresh event data
+      await updateChatbotWithEvents();
+
+      // Add current events to context
+      const chatWithEvents = [
+        chatHistory[0],
+        { role: "system", content: getEventsContext() },
+        ...chatHistory.slice(1)
+      ];
+
+      try {
+        const res = await fetch('http://localhost:1234/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer lm-studio'
+          },
+          body: JSON.stringify({
+            messages: chatWithEvents,
+            temperature: 0.3,
+            max_tokens: 60,
+            stop: ["\n\n", "Q:", "Example"],
+            presence_penalty: 0.6,
+            frequency_penalty: 0.8
+          })
+        });
+
+        const data = await res.json();
+        const reply = data.choices?.[0]?.message?.content?.trim() || "[Pas de réponse]";
+
+        chatLog.innerHTML += `<div class="message bot">${reply}</div>`;
+        chatLog.scrollTop = chatLog.scrollHeight;
+
+        // Add bot response to history
+        chatHistory.push({ role: "assistant", content: reply });
+
+      } catch (err) {
+        console.error('Erreur chatbot:', err);
+        chatLog.innerHTML += `<div class="message bot" style="background: linear-gradient(135deg, #d32f2f 0%, #c62828 100%);">❌ Erreur: impossible de joindre le modèle IA local. Assurez-vous que LM Studio est en cours d'exécution sur le port 1234.</div>`;
+        chatLog.scrollTop = chatLog.scrollHeight;
+      }
+    }
+
+    // Utility function to escape HTML
+    function escapeHtml(text) {
+      const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+      };
+      return text.replace(/[&<>"']/g, m => map[m]);
+    }
+
+    // Allow Enter key to send message (Shift+Enter for new line)
+    document.addEventListener('DOMContentLoaded', function () {
+      const chatInput = document.getElementById('chat-input');
+      if (chatInput) {
+        chatInput.addEventListener('keypress', function (e) {
+          if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendChat();
+          }
+        });
+      }
+    });
+  </script>
+
+</body>
+
+</html>

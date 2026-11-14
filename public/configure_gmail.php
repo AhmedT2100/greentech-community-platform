@@ -1,0 +1,1 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Email configuration</title><h1>Email configuration</h1><p>Set SMTP_HOST, SMTP_PORT, SMTP_USERNAME, SMTP_PASSWORD, SMTP_FROM_EMAIL and SMTP_FROM_NAME in the server environment or the private .env file. See the repository README.</p></html>

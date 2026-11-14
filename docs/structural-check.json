@@ -1,0 +1,111 @@
+{
+  "checked": 1369,
+  "missing_count": 21,
+  "missing": [
+    {
+      "file": "public/FrontOffice/article.php",
+      "kind": "resource",
+      "target": "./js/language.js"
+    },
+    {
+      "file": "public/about.html",
+      "kind": "resource",
+      "target": "img/apple-touch-icon.png"
+    },
+    {
+      "file": "public/articles/BackOffice/dashboard.php",
+      "kind": "resource",
+      "target": "js/language.js"
+    },
+    {
+      "file": "public/articles/article.php",
+      "kind": "resource",
+      "target": "./js/language.js"
+    },
+    {
+      "file": "public/contact.html",
+      "kind": "resource",
+      "target": "img/apple-touch-icon.png"
+    },
+    {
+      "file": "public/event-reservations/html-business-template/about.html",
+      "kind": "resource",
+      "target": "img/apple-touch-icon.png"
+    },
+    {
+      "file": "public/event-reservations/html-business-template/contact.html",
+      "kind": "resource",
+      "target": "img/apple-touch-icon.png"
+    },
+    {
+      "file": "public/event-reservations/html-business-template/portfolio.html",
+      "kind": "resource",
+      "target": "img/apple-touch-icon.png"
+    },
+    {
+      "file": "public/event-reservations/html-business-template/price.html",
+      "kind": "resource",
+      "target": "img/apple-touch-icon.png"
+    },
+    {
+      "file": "public/event-reservations/html-business-template/service.html",
+      "kind": "resource",
+      "target": "img/apple-touch-icon.png"
+    },
+    {
+      "file": "public/events.html",
+      "kind": "resource",
+      "target": "auth.js"
+    },
+    {
+      "file": "public/html-business-template/about.html",
+      "kind": "resource",
+      "target": "img/apple-touch-icon.png"
+    },
+    {
+      "file": "public/html-business-template/contact.html",
+      "kind": "resource",
+      "target": "img/apple-touch-icon.png"
+    },
+    {
+      "file": "public/html-business-template/portfolio.html",
+      "kind": "resource",
+      "target": "img/apple-touch-icon.png"
+    },
+    {
+      "file": "public/html-business-template/price.html",
+      "kind": "resource",
+      "target": "img/apple-touch-icon.png"
+    },
+    {
+      "file": "public/html-business-template/service.html",
+      "kind": "resource",
+      "target": "img/apple-touch-icon.png"
+    },
+    {
+      "file": "public/includes/footer.php",
+      "kind": "resource",
+      "target": "/terms.html"
+    },
+    {
+      "file": "public/includes/footer.php",
+      "kind": "resource",
+      "target": "/privacy.html"
+    },
+    {
+      "file": "public/portfolio.html",
+      "kind": "resource",
+      "target": "img/apple-touch-icon.png"
+    },
+    {
+      "file": "public/price.html",
+      "kind": "resource",
+      "target": "img/apple-touch-icon.png"
+    },
+    {
+      "file": "public/service.html",
+      "kind": "resource",
+      "target": "img/apple-touch-icon.png"
+    }
+  ]
+}

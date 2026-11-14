@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>GreenTechHub | Mes Réclamations</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300|Nunito:400,700&display=swap"
+        rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/dark-mode.css" rel="stylesheet">
+    <style>
+        .reclamations-container {
+            padding: 100px 0 60px;
+            min-height: 100vh;
+            background: #f8f9fa;
+        }
+
+        .reclamation-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .reclamation-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .priority-badge {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .priority-low {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .priority-normal {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .priority-high {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .status-en-attente {
+            background: #cce5ff;
+            color: #004085;
+        }
+
+        .status-en-cours {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-resolue {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .btn-primary {
+            background: #28a745 !important;
+            border-color: #28a745 !important;
+            color: white !important;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: #218838 !important;
+            border-color: #1e7e34 !important;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .btn-info,
+        .btn-warning,
+        .btn-danger {
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-info:hover,
+        .btn-warning:hover,
+        .btn-danger:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .modal-header {
+            background: #28a745 !important;
+            color: white !important;
+        }
+
+        .modal-content {
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-label {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .form-control {
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .form-control:focus {
+            border-color: #28a745;
+            box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+        }
+
+        .response-section {
+            background: #e7f5ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid #28a745;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section Start -->
+    <header class="header">
+        <div class="container-fluid">
+            <div class="logo pull-left">
+                <h1><a href="index.html">GreenTechHub</a></h1>
+            </div>
+
+            <nav id="nav-menu-container">
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li class="menu-active"><a href="reclamations.html">Réclamations</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li id="adminLink" style="display:none;"><a href="admin.html">Admin</a></li>
+                    <li id="userInfo" style="display:none;"></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- Header Section End -->
+
+    <!-- Reclamations Section Start -->
+    <section class="reclamations-container">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-md-8">
+                    <h2>Mes Réclamations</h2>
+                </div>
+                <div class="col-md-4 text-end">
+                    <button class="btn btn-primary" onclick="openCreateModal()">
+                        <i class="ion-md-add"></i> Nouvelle Réclamation
+                    </button>
+                </div>
+            </div>
+
+            <!-- Search Box -->
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="searchBox" placeholder="Rechercher..."
+                        onkeyup="filterReclamations()">
+                </div>
+            </div>
+
+            <!-- Reclamations List -->
+            <div id="reclamationsList">
+                <!-- Will be populated by JavaScript -->
+            </div>
+
+            <div id="noReclamations" style="display:none;" class="text-center py-5">
+                <i class="ion-md-document" style="font-size: 64px; color: #ccc;"></i>
+                <p class="text-muted mt-3">Aucune réclamation trouvée</p>
+            </div>
+        </div>
+    </section>
+    <!-- Reclamations Section End -->
+
+    <!-- Create/Edit Reclamation Modal -->
+    <div class="modal fade" id="reclamationModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Nouvelle Réclamation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="reclamationForm">
+                        <input type="hidden" id="reclamationId">
+                        <div class="mb-3">
+                            <label for="sujet" class="form-label">Sujet *</label>
+                            <input type="text" class="form-control" id="sujet" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description *</label>
+                            <textarea class="form-control" id="description" rows="4" required></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="fullName" class="form-label">Nom Complet</label>
+                                <input type="text" class="form-control" id="fullName">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="mobilePhone" class="form-label">Téléphone</label>
+                                <input type="text" class="form-control" id="mobilePhone">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="priority" class="form-label">Priorité</label>
+                            <select class="form-control" id="priority">
+                                <option value="low">Basse</option>
+                                <option value="normal" selected>Normale</option>
+                                <option value="high">Haute</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary" onclick="saveReclamation()">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Reclamation Modal -->
+    <div class="modal fade" id="viewModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Détails de la Réclamation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="viewModalBody">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" style="margin-top: 60px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>&copy; 2024 GreenTechHub. Tous droits réservés.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let currentUser = null;
+        let allReclamations = [];
+        let reclamationModal, viewModal;
+
+        // Check authentication on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            const userData = localStorage.getItem('user');
+            if (!userData) {
+                showWarningModal('Vous devez être connecté pour accéder à cette page');
+                setTimeout(() => window.location.href = 'index.html', 2000);
+                return;
+            }
+
+            currentUser = JSON.parse(userData);
+
+            // Update header
+            updateHeader();
+
+            // Initialize modals
+            reclamationModal = new bootstrap.Modal(document.getElementById('reclamationModal'));
+            viewModal = new bootstrap.Modal(document.getElementById('viewModal'));
+
+            // Load reclamations
+            loadReclamations();
+        });
+
+        function updateHeader() {
+            if (currentUser) {
+                document.getElementById('userInfo').innerHTML = `<a href="#" onclick="logout(); return false;">${currentUser.nom} (Déconnexion)</a>`;
+                document.getElementById('userInfo').style.display = 'block';
+
+                if (currentUser.role === 'admin') {
+                    document.getElementById('adminLink').style.display = 'block';
+                }
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('user');
+            window.location.href = 'index.html';
+        }
+
+        async function loadReclamations() {
+            try {
+                const userId = currentUser.id_user || currentUser.id;
+                const response = await fetch(`reclamations_api.php?action=get_user_reclamations&user_id=${userId}`);
+                const data = await response.json();
+
+                if (data.success) {
+                    allReclamations = data.reclamations;
+                    displayReclamations(allReclamations);
+                } else {
+                    console.error('Error loading reclamations:', data.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        function displayReclamations(reclamations) {
+            const container = document.getElementById('reclamationsList');
+            const noResults = document.getElementById('noReclamations');
+
+            if (reclamations.length === 0) {
+                container.innerHTML = '';
+                noResults.style.display = 'block';
+                return;
+            }
+
+            noResults.style.display = 'none';
+            container.innerHTML = reclamations.map(rec => `
+                <div class="reclamation-card">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div class="flex-grow-1">
+                            <h5>${rec.sujet}</h5>
+                            <p class="text-muted mb-2">${rec.description.substring(0, 150)}${rec.description.length > 150 ? '...' : ''}</p>
+                            <div class="mb-2">
+                                <span class="priority-badge priority-${rec.priority}">${getPriorityLabel(rec.priority)}</span>
+                                <span class="status-badge status-${rec.statut.replace(' ', '-')}">${rec.statut}</span>
+                                <span class="text-muted ms-2"><small><i class="ion-md-time"></i> ${formatDate(rec.date_creation)}</small></span>
+                            </div>
+                            ${rec.response_text ? `<div class="response-section">
+                                <strong>Réponse de l'admin:</strong> ${rec.response_text}
+                                <br><small class="text-muted">Par ${rec.responder_name || 'Admin'} le ${formatDate(rec.response_date)}</small>
+                            </div>` : ''}
+                        </div>
+                        <div class="ms-3">
+                            <button class="btn btn-sm btn-info mb-1" onclick="viewReclamation(${rec.id_reclamation})" title="Voir">
+                                <i class="ion-md-eye"></i>
+                            </button>
+                            ${rec.statut === 'en attente' ? `
+                                <button class="btn btn-sm btn-warning mb-1" onclick="editReclamation(${rec.id_reclamation})" title="Modifier">
+                                    <i class="ion-md-create"></i>
+                                </button>
+                                <button class="btn btn-sm btn-danger" onclick="deleteReclamation(${rec.id_reclamation})" title="Supprimer">
+                                    <i class="ion-md-trash"></i>
+                                </button>
+                            ` : ''}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getPriorityLabel(priority) {
+            const labels = { 'low': 'Basse', 'normal': 'Normale', 'high': 'Haute' };
+            return labels[priority] || priority;
+        }
+
+        function formatDate(dateString) {
+            if (!dateString) return '';
+            const date = new Date(dateString);
+            return date.toLocaleDateString('fr-FR') + ' ' + date.toLocaleTimeString('fr-FR');
+        }
+
+        function filterReclamations() {
+            const search = document.getElementById('searchBox').value.toLowerCase();
+            const filtered = allReclamations.filter(rec =>
+                rec.sujet.toLowerCase().includes(search) ||
+                rec.description.toLowerCase().includes(search) ||
+                rec.priority.toLowerCase().includes(search) ||
+                rec.statut.toLowerCase().includes(search)
+            );
+            displayReclamations(filtered);
+        }
+
+        function openCreateModal() {
+            document.getElementById('modalTitle').textContent = 'Nouvelle Réclamation';
+            document.getElementById('reclamationForm').reset();
+            document.getElementById('reclamationId').value = '';
+            reclamationModal.show();
+        }
+
+        function editReclamation(id) {
+            const rec = allReclamations.find(r => r.id_reclamation == id);
+            if (!rec) return;
+
+            document.getElementById('modalTitle').textContent = 'Modifier la Réclamation';
+            document.getElementById('reclamationId').value = rec.id_reclamation;
+            document.getElementById('sujet').value = rec.sujet;
+            document.getElementById('description').value = rec.description;
+            document.getElementById('fullName').value = rec.full_name || '';
+            document.getElementById('mobilePhone').value = rec.mobile_phone || '';
+            document.getElementById('priority').value = rec.priority;
+            reclamationModal.show();
+        }
+
+        async function saveReclamation() {
+            const id = document.getElementById('reclamationId').value;
+            const formData = new FormData();
+
+            formData.append('action', id ? 'update_reclamation' : 'create_reclamation');
+            formData.append('user_id', currentUser.id_user || currentUser.id);
+            formData.append('sujet', document.getElementById('sujet').value);
+            formData.append('description', document.getElementById('description').value);
+            formData.append('full_name', document.getElementById('fullName').value);
+            formData.append('mobile_phone', document.getElementById('mobilePhone').value);
+            formData.append('priority', document.getElementById('priority').value);
+
+            if (id) {
+                formData.append('id', id);
+            }
+
+            try {
+                const response = await fetch('reclamations_api.php', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    reclamationModal.hide();
+                    loadReclamations();
+                    showSuccessToast(id ? 'Réclamation modifiée avec succès' : 'Réclamation créée avec succès');
+                } else {
+                    showErrorModal('Erreur: ' + data.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showErrorModal('Erreur lors de l\'enregistrement. Veuillez réessayer.');
+            }
+        }
+
+        async function deleteReclamation(id) {
+            if (!confirm('Êtes-vous sûr de vouloir supprimer cette réclamation ?')) return;
+
+            const formData = new FormData();
+            formData.append('action', 'delete_reclamation');
+            formData.append('id', id);
+            formData.append('user_id', currentUser.id_user || currentUser.id);
+
+            try {
+                const response = await fetch('reclamations_api.php', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    loadReclamations();
+                    showSuccessToast('Réclamation supprimée avec succès');
+                } else {
+                    showErrorModal('Erreur: ' + data.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showErrorModal('Erreur lors de la suppression. Veuillez réessayer.');
+            }
+        }
+
+        async function viewReclamation(id) {
+            const rec = allReclamations.find(r => r.id_reclamation == id);
+            if (!rec) return;
+
+            const body = document.getElementById('viewModalBody');
+            body.innerHTML = `
+                <div>
+                    <h5>${rec.sujet}</h5>
+                    <div class="mb-3">
+                        <span class="priority-badge priority-${rec.priority}">${getPriorityLabel(rec.priority)}</span>
+                        <span class="status-badge status-${rec.statut.replace(' ', '-')}">${rec.statut}</span>
+                    </div>
+                    <p><strong>Description:</strong></p>
+                    <p>${rec.description}</p>
+                    ${rec.full_name ? `<p><strong>Nom:</strong> ${rec.full_name}</p>` : ''}
+                    ${rec.mobile_phone ? `<p><strong>Téléphone:</strong> ${rec.mobile_phone}</p>` : ''}
+                    <p><strong>Date de création:</strong> ${formatDate(rec.date_creation)}</p>
+                    ${rec.date_resolution ? `<p><strong>Date de résolution:</strong> ${formatDate(rec.date_resolution)}</p>` : ''}
+                    ${rec.response_text ? `
+                        <div class="response-section mt-3">
+                            <h6>Réponse de l'administrateur</h6>
+                            <p>${rec.response_text}</p>
+                            <small class="text-muted">Par ${rec.responder_name || 'Admin'} le ${formatDate(rec.response_date)}</small>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+            viewModal.show();
+        }
+
+        // Helper functions for professional notifications
+        function showSuccessToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'position-fixed top-0 end-0 p-3';
+            toast.style.zIndex = '9999';
+            toast.innerHTML = `
+                <div class="toast show" role="alert" style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.4); border: none;">
+                    <div class="toast-body" style="padding: 20px; font-size: 16px; font-weight: 600;">
+                        <i class="fas fa-check-circle" style="font-size: 20px; margin-right: 10px;"></i>
+                        ${message}
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 4000);
+        }
+
+        function showErrorModal(message) {
+            const modalId = 'errorModal' + Date.now();
+            const modalHtml = `
+                <div class="modal fade" id="${modalId}" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content" style="border: 3px solid #dc3545; border-radius: 15px;">
+                            <div class="modal-header" style="background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); color: white; border-radius: 12px 12px 0 0; padding: 20px;">
+                                <h5 class="modal-title"><i class="fas fa-exclamation-circle"></i> Erreur</h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body" style="padding: 30px; font-size: 16px;">
+                                <p>${message}</p>
+                            </div>
+                            <div class="modal-footer" style="border-top: 2px solid #dee2e6; padding: 15px;">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" style="padding: 10px 30px; border-radius: 8px;">
+                                    <i class="fas fa-times"></i> Fermer
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+            const modal = new bootstrap.Modal(document.getElementById(modalId));
+            modal.show();
+
+            document.getElementById(modalId).addEventListener('hidden.bs.modal', function () {
+                this.remove();
+            });
+        }
+
+        function showWarningModal(message) {
+            const modalId = 'warningModal' + Date.now();
+            const modalHtml = `
+                <div class="modal fade" id="${modalId}" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content" style="border: 3px solid #ffc107; border-radius: 15px;">
+                            <div class="modal-header" style="background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%); color: #000; border-radius: 12px 12px 0 0; padding: 20px;">
+                                <h5 class="modal-title"><i class="fas fa-exclamation-triangle"></i> Attention</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body" style="padding: 30px; font-size: 16px;">
+                                <p>${message}</p>
+                            </div>
+                            <div class="modal-footer" style="border-top: 2px solid #dee2e6; padding: 15px;">
+                                <button type="button" class="btn btn-warning" data-bs-dismiss="modal" style="padding: 10px 30px; border-radius: 8px; color: #000;">
+                                    <i class="fas fa-check"></i> Compris
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+            const modal = new bootstrap.Modal(document.getElementById(modalId));
+            modal.show();
+
+            document.getElementById(modalId).addEventListener('hidden.bs.modal', function () {
+                this.remove();
+            });
+        }
+    </script>
+    <script src="js/dark-mode.js"></script>
+</body>
+
+</html>

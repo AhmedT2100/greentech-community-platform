@@ -1,0 +1,96 @@
+/* Frontend visual overrides to differentiate public site from admin
+   This file loads after `dashboard.css` and tweaks colors, buttons and headings.
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+
+:root {
+  --primary-color: #10b981; /* green: ecological brand color */
+  --primary-dark: #059669;
+  --secondary-color: #3b82f6;
+  --accent-color: #34d399;
+  --light-color: #f8fafc;
+}
+
+/* Gentle natural background with a very light green tint */
+body {
+  background: linear-gradient(180deg, #f8fbf8 0%, #ffffff 100%) !important;
+  color: #263238 !important;
+  font-family: 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+}
+
+/* Headings and brand highlight use the ecological green */
+.header h1, .site-title, .site-branding h1 {
+  color: var(--primary-color) !important;
+}
+
+/* Links */
+a { color: var(--primary-color); }
+a:hover { color: var(--primary-dark); }
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: #fff;
+}
+.btn-primary:hover { background-color: var(--primary-dark); border-color: var(--primary-dark); }
+
+/* Cards: a faint green left accent to suggest growth */
+.stat-card, .chart-card, .news-card, .impact-card {
+  border-left: 4px solid rgba(16,185,129,0.08) !important;
+}
+
+/* Sidebar / Navigation: subtle green theme for frontoffice */
+.sidebar {
+  background: linear-gradient(180deg, rgba(16,185,129,0.96), rgba(5,150,105,0.96)) !important;
+  color: #ffffff !important;
+  padding-top: 1rem;
+}
+.sidebar .sidebar-header h2, .sidebar .sidebar-header i {
+  color: #ffffff !important;
+}
+.sidebar .nav-link {
+  color: rgba(255,255,255,0.95) !important;
+  background: transparent !important;
+  padding: .7rem 1rem !important;
+  border-radius: 8px;
+}
+.sidebar .nav-link .fas { color: rgba(255,255,255,0.95) !important; }
+.sidebar .nav-link:hover {
+  background: rgba(255,255,255,0.06) !important;
+  color: #fff !important;
+}
+.sidebar .nav-link.active {
+  background: linear-gradient(90deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02)) !important;
+  color: #fff !important;
+  box-shadow: inset 3px 0 0 rgba(255,255,255,0.12);
+}
+
+/* Footer: darker green for contrast but natural tone */
+#footer-area { background-color: #08321a; color: #dbeee2; }
+
+/* Slightly larger header on wide screens */
+@media (min-width: 768px) {
+  .header h1 { font-size: 34px; }
+  .main-content { padding: 36px; }
+}
+
+/* Avoid overriding admin/sidebar transitions */
+
+/* Avoid overriding admin/sidebar transitions */
+.sidebar, .sidebar * { transition: none; }
+
+/* Small leafy accent for brand areas (uses CSS only) */
+.sidebar-header::after, .site-branding::after {
+  /* small SVG leaf as a decorative accent, encoded as data URI */
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-left: 8px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%2310b981' d='M12 2C8 6 4 6 2 8s4 6 10 6 10-4 10-6-4-6-10-6z'/></svg>");
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.95;
+}

@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GreenTechHub | Dashboard Écologique</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+    <link rel="stylesheet" href="web.admin.css">
+    <link rel="stylesheet" href="web.front.css">
+
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <!-- Sidebar -->
+
+        <div class="sidebar">
+
+            <div class="sidebar-header">
+
+                <i class="fas fa-leaf"></i>
+
+                <h2>GreenTechHub</h2>
+
+            </div>
+
+            <div class="sidebar-menu">
+
+                <ul class="nav flex-column">
+
+                    <li class="nav-item">
+
+                        <a class="nav-link active" href="dashboard.html">
+
+                            <i class="fas fa-tachometer-alt"></i>
+
+                            <span>Tableau de Bord</span>
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="#">
+
+                            <i class="fas fa-lightbulb"></i>
+
+                            <span>Innovations</span>
+
+                        </a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="evenements.html">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Événements</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="#">
+
+                            <i class="fas fa-newspaper"></i>
+
+                            <span>Actualités</span>
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="#">
+
+                            <i class="fas fa-chart-bar"></i>
+
+                            <span>Statistiques</span>
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="admin.html">
+
+                            <i class="fas fa-users-cog"></i>
+
+                            <span>Administration</span>
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="#">
+
+                            <i class="fas fa-plus"></i>
+
+                            <span>Proposer une idée</span>
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="#">
+
+                            <i class="fas fa-cog"></i>
+
+                            <span>Paramètres</span>
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="#">
+
+                            <i class="fas fa-question-circle"></i>
+
+                            <span>Aide & Support</span>
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Main Content -->
+
+        <div class="main-content">
+
+            <!-- Header -->
+
+            <div class="header">
+
+                <h1>Tableau de Bord GreenTech</h1>
+
+                <div class="user-actions">
+
+                    <button class="btn btn-outline-primary" onclick="openLoginModal()">
+
+                        <i class="fas fa-sign-in-alt"></i> Connexion
+
+                    </button>
+
+                    <button class="btn btn-primary" onclick="openSignupModal()">
+
+                        <i class="fas fa-user-plus"></i> Inscription
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Stats Cards -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card stat-1">
+
+                    <div class="stat-info">
+
+                        <h3>Innovations</h3>
+
+                        <div class="stat-value">345</div>
+
+                        <div class="stat-change positive">
+
+                            <i class="fas fa-arrow-up"></i> +2.00% (30 jours)
+
+                        </div>
+
+                    </div>
+
+                    <div class="stat-icon">
+
+                        <i class="fas fa-lightbulb"></i>
+
+                    </div>
+
+                </div>
+
+                
+
+                <div class="stat-card stat-2">
+
+                    <div class="stat-info">
+
+                        <h3>Utilisateurs</h3>
+
+                        <div class="stat-value">1,247</div>
+
+                        <div class="stat-change positive">
+
+                            <i class="fas fa-arrow-up"></i> +5.45% Augmentation
+
+                        </div>
+
+                    </div>
+
+                    <div class="stat-icon">
+
+                        <i class="fas fa-users"></i>
+
+                    </div>
+
+                </div>
+
+                
+
+                <div class="stat-card stat-3">
+
+                    <div class="stat-info">
+
+                        <h3>Votes Total</h3>
+
+                        <div class="stat-value">2,456</div>
+
+                        <div class="stat-change negative">
+
+                            <i class="fas fa-arrow-down"></i> -2.00% Diminution
+
+                        </div>
+
+                    </div>
+
+                    <div class="stat-icon">
+
+                        <i class="fas fa-heart"></i>
+
+                    </div>
+
+                </div>
+
+                
+
+                <div class="stat-card stat-4">
+
+                    <div class="stat-info">
+
+                        <h3>Nouveaux Membres</h3>
+
+                        <div class="stat-value">156</div>
+
+                        <div class="stat-change negative">
+
+                            <i class="fas fa-arrow-down"></i> -25.00% Moins
+
+                        </div>
+
+                    </div>
+
+                    <div class="stat-icon">
+
+                        <i class="fas fa-user-plus"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Environmental Impact Section -->
+
+            <div class="environmental-grid">
+
+                <div class="impact-card">
+
+                    <div class="chart-header">
+
+                        <h3>Impact Environnemental Global</h3>
+
+                    </div>
+
+                    <div class="chart-container">
+
+                        <canvas id="environmentalChart"></canvas>
+
+                    </div>
+
+                    <div class="impact-stats">
+
+                        <div class="impact-stat co2-saved">
+
+                            <div class="value">124T</div>
+
+                            <div class="label">CO₂ Économisé</div>
+
+                        </div>
+
+                        <div class="impact-stat water-saved">
+
+                            <div class="value">58K L</div>
+
+                            <div class="label">Eau Préservée</div>
+
+                        </div>
+
+                        <div class="impact-stat waste-reduced">
+
+                            <div class="value">12T</div>
+
+                            <div class="label">Déchets Réduits</div>
+
+                        </div>
+
+                        <div class="impact-stat trees-planted">
+
+                            <div class="value">845</div>
+
+                            <div class="label">Arbres Plantés</div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="impact-card">
+
+                    <div class="chart-header">
+
+                        <h3>Répartition des Technologies Vertes</h3>
+
+                    </div>
+
+                    <div class="chart-container">
+
+                        <canvas id="techDistributionChart"></canvas>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Charts Section -->
+
+            <div class="charts-grid">
+
+                <!-- Main Chart -->
+
+                <div class="chart-card">
+
+                    <div class="chart-header">
+
+                        <h3>Statistiques Annuelles des Innovations</h3>
+
+                        <div class="chart-actions">
+
+                            <button class="btn btn-sm btn-outline-primary">2025</button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="chart-container">
+
+                        <canvas id="annualChart"></canvas>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Innovations List -->
+
+                <div class="innovations-list">
+
+                    <div class="chart-header">
+
+                        <h3>Innovations Populaires</h3>
+
+                    </div>
+
+                    <div class="innovations-container">
+
+                        <div class="innovation-item">
+
+                            <div class="innovation-info">
+
+                                <h4>Capteur Solaire 2.0</h4>
+
+                                <p>Panneaux solaires transparents pour immeubles</p>
+
+                            </div>
+
+                            <div class="innovation-votes">
+
+                                <i class="fas fa-heart"></i> 152
+
+                            </div>
+
+                        </div>
+
+                        <div class="innovation-item">
+
+                            <div class="innovation-info">
+
+                                <h4>Robot Tri-Sélectif</h4>
+
+                                <p>IA pour trier 10 types de plastiques</p>
+
+                            </div>
+
+                            <div class="innovation-votes">
+
+                                <i class="fas fa-heart"></i> 110
+
+                            </div>
+
+                        </div>
+
+                        <div class="innovation-item">
+
+                            <div class="innovation-info">
+
+                                <h4>Vélo-Cargo Modulaire</h4>
+
+                                <p>Vélo électrique urbain 100% recyclable</p>
+
+                            </div>
+
+                            <div class="innovation-votes">
+
+                                <i class="fas fa-heart"></i> 95
+
+                            </div>
+
+                        </div>
+
+                        <div class="innovation-item">
+
+                            <div class="innovation-info">
+
+                                <h4>Batterie Écologique</h4>
+
+                                <p>Stockage d'énergie à base d'algues</p>
+
+                            </div>
+
+                            <div class="innovation-votes">
+
+                                <i class="fas fa-heart"></i> 87
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- News Section -->
+
+            <div class="news-grid">
+
+                <div class="news-card">
+
+                    <h4>L'Europe vote la fin du moteur thermique en 2035</h4>
+
+                    <div class="news-date">
+
+                        <i class="fas fa-calendar-alt"></i> Publié le 08/11/2025
+
+                    </div>
+
+                    <p>Analyse des conséquences de cette décision majeure sur l'innovation dans la mobilité verte et les alternatives durables.</p>
+
+                    <a href="#" class="news-link">
+
+                        Lire l'article complet <i class="fas fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+                <div class="news-card">
+
+                    <h4>Événement : Sommet de l'Économie Circulaire</h4>
+
+                    <div class="news-date">
+
+                        <i class="fas fa-calendar-alt"></i> Publié le 05/11/2025
+
+                    </div>
+
+                    <p>Retour sur les meilleures initiatives présentées par les startups spécialisées en recyclage et économie circulaire.</p>
+
+                    <a href="#" class="news-link">
+
+                        Lire l'article complet <i class="fas fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Chatbot -->
+
+    <div class="chatbot-container">
+
+        <button class="chatbot-toggle" id="chatbotToggle">
+
+            <i class="fas fa-robot"></i>
+
+        </button>
+
+        <div class="chatbot-window" id="chatbotWindow">
+
+            <div class="chatbot-header">
+
+                <h3><i class="fas fa-leaf"></i> Assistant GreenTech</h3>
+
+                <button class="chatbot-close" id="chatbotClose">
+
+                    <i class="fas fa-times"></i>
+
+                </button>
+
+            </div>
+
+            <div class="chatbot-messages" id="chatbotMessages">
+
+                <div class="message bot-message">
+
+                    Bonjour ! Je suis l'assistant IA de GreenTechHub. Je peux vous aider avec toutes vos questions sur les innovations écologiques, les technologies vertes, et notre plateforme. Que souhaitez-vous savoir ?
+
+                    <div class="suggested-questions">
+
+                        <button class="suggested-question" data-question="Explique-moi GreenTechHub">Explique-moi GreenTechHub</button>
+
+                        <button class="suggested-question" data-question="Quelles sont les dernières innovations écologiques ?">Innovations récentes</button>
+
+                        <button class="suggested-question" data-question="Comment réduire mon empreinte carbone ?">Réduire empreinte carbone</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="chatbot-input">
+
+                <input type="text" id="chatbotInput" placeholder="Posez votre question sur l'écologie...">
+
+                <button class="chatbot-send" id="chatbotSend">
+
+                    <i class="fas fa-paper-plane"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Modale de Connexion -->
+
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content login-modal-content">
+
+                <div class="login-header">
+
+                    <i class="fas fa-leaf"></i>
+
+                    <h1>Connexion</h1>
+
+                    <p class="mb-0">Accédez à votre tableau de bord GreenTechHub</p>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                </div>
+
+                
+
+                <div class="login-body">
+
+                    <form id="loginForm">
+
+                        <div class="mb-3">
+
+                            <label for="loginEmail" class="form-label">Adresse Email</label>
+
+                            <div class="input-group">
+
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+
+                                <input type="email" class="form-control with-icon" id="loginEmail" placeholder="votre@email.com" required>
+
+                            </div>
+
+                        </div>
+
+                        
+
+                        <div class="mb-3">
+
+                            <label for="loginPassword" class="form-label">Mot de passe</label>
+
+                            <div class="input-group">
+
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+
+                                <input type="password" class="form-control with-icon" id="loginPassword" placeholder="Votre mot de passe" required>
+
+                            </div>
+
+                        </div>
+
+                        
+
+                        <div class="mb-3 form-check">
+
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+
+                            <label class="form-check-label" for="rememberMe">Se souvenir de moi</label>
+
+                            <a href="#" class="float-end" style="font-size: 0.875rem;">Mot de passe oublié ?</a>
+
+                        </div>
+
+                        
+
+                        <button type="submit" class="btn btn-primary w-100 mb-3">
+
+                            <i class="fas fa-sign-in-alt me-2"></i>Se connecter
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+                
+
+                <div class="login-footer">
+
+                    <p class="mb-0">Pas encore de compte ? <a href="#" onclick="switchToSignup()">Créer un compte</a></p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Modale d'Inscription -->
+
+    <div class="modal fade" id="signupModal" tabindex="-1" aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content signup-modal-content">
+
+                <div class="signup-header">
+
+                    <i class="fas fa-leaf"></i>
+
+                    <h1>Créer un compte</h1>
+
+                    <p class="mb-0">Rejoignez la communauté GreenTechHub</p>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                </div>
+
+                
+
+                <div class="signup-body">
+
+                    <form id="signupForm">
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+
+                                <label for="firstName" class="form-label">Prénom</label>
+
+                                <div class="input-group">
+
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+
+                                    <input type="text" class="form-control with-icon" id="firstName" placeholder="Votre prénom" required>
+
+                                </div>
+
+                            </div>
+
+                            
+
+                            <div class="col-md-6 mb-3">
+
+                                <label for="lastName" class="form-label">Nom</label>
+
+                                <div class="input-group">
+
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+
+                                    <input type="text" class="form-control with-icon" id="lastName" placeholder="Votre nom" required>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        
+
+                        <div class="mb-3">
+
+                            <label for="signupEmail" class="form-label">Adresse Email</label>
+
+                            <div class="input-group">
+
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+
+                                <input type="email" class="form-control with-icon" id="signupEmail" placeholder="votre@email.com" required>
+
+                            </div>
+
+                        </div>
+
+                        
+
+                        <div class="mb-3">
+
+                            <label for="signupPassword" class="form-label">Mot de passe</label>
+
+                            <div class="input-group">
+
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+
+                                <input type="password" class="form-control with-icon" id="signupPassword" placeholder="Créez un mot de passe" required>
+
+                            </div>
+
+                            <div class="password-strength">
+
+                                <div class="password-strength-bar" id="passwordStrength"></div>
+
+                            </div>
+
+                            <div class="form-text">Le mot de passe doit contenir au moins 8 caractères</div>
+
+                        </div>
+
+                        
+
+                        <div class="mb-3">
+
+                            <label for="confirmPassword" class="form-label">Confirmer le mot de passe</label>
+
+                            <div class="input-group">
+
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+
+                                <input type="password" class="form-control with-icon" id="confirmPassword" placeholder="Confirmez votre mot de passe" required>
+
+                            </div>
+
+                        </div>
+
+                        
+
+                        <div class="mb-3 form-check">
+
+                            <input type="checkbox" class="form-check-input" id="acceptTerms" required>
+
+                            <label class="form-check-label" for="acceptTerms">
+
+                                J'accepte les <a href="#">conditions d'utilisation</a> et la <a href="#">politique de confidentialité</a>
+
+                            </label>
+
+                        </div>
+
+                        
+
+                        <button type="submit" class="btn btn-primary w-100 mb-3">
+
+                            <i class="fas fa-user-plus me-2"></i>Créer mon compte
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+                
+
+                <div class="signup-footer">
+
+                    <p class="mb-0">Déjà un compte ? <a href="#" onclick="switchToLogin()">Se connecter</a></p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="../auth-ui.js"></script>
+
+</body>
+
+</html>
