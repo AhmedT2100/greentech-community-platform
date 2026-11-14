@@ -1,0 +1,27 @@
+name: Validate source
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: pdo_mysql, curl, mbstring
+          tools: composer:v2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: composer validate
+      - run: composer install --no-interaction --prefer-dist
+      - run: npm ci --ignore-scripts
+      - run: npm run assets
+      - name: PHP syntax
+        run: find public config scripts -name '*.php' -not -path '*/vendor/*' -print0 | xargs -0 -n1 php -l
+      - name: JavaScript syntax
+        run: find public -name '*.js' -not -path '*/vendor/*' -print0 | xargs -0 -n1 node --check
+      - run: python3 scripts/check-structure.py --check

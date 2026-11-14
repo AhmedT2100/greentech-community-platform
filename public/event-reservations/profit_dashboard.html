@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Profit Calculator - GreenTechHub</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="mvc/Public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 40px;
+            background: linear-gradient(135deg, #353535 0%, #1dbf73 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            max-width: 900px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #1dbf73;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #656565;
+            margin-bottom: 30px;
+        }
+
+        .profit-card {
+            background: linear-gradient(135deg, #1dbf73 0%, #17a566 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.3s;
+        }
+
+        .profit-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(29, 191, 115, 0.4);
+        }
+
+        .profit-info h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
+        .profit-amount {
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .event-details {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .total-profit {
+            background: linear-gradient(135deg, #353535 0%, #4a4a4a 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .total-profit h2 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
+        .total-profit .amount {
+            font-size: 48px;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px;
+            color: #656565;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #1dbf73;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .no-profit {
+            text-align: center;
+            padding: 40px;
+            color: #656565;
+            background: #f8f8f8;
+            border-radius: 8px;
+        }
+
+        .refresh-btn {
+            background: #1dbf73;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .refresh-btn:hover {
+            background: #353535;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>📊 Tableau des Profits</h1>
+        <p class="subtitle">Profit généré par chaque événement (réservations confirmées uniquement)</p>
+
+        <button class="refresh-btn" onclick="loadProfits()">🔄 Actualiser les Données</button>
+
+        <div id="profitContainer">
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Chargement des profits...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let profitsData = [];
+
+        async function loadProfits() {
+            const container = document.getElementById('profitContainer');
+            container.innerHTML = `
+        <div class="loading">
+          <div class="spinner"></div>
+          <p>Chargement des profits...</p>
+        </div>
+      `;
+
+            try {
+                const response = await fetch('events_api.php?action=get_event_profit');
+                const data = await response.json();
+
+                if (data.success && data.profits) {
+                    profitsData = data.profits;
+                    displayProfits(profitsData);
+                } else {
+                    container.innerHTML = `
+            <div class="no-profit">
+              <h3>❌ Erreur</h3>
+              <p>Impossible de charger les profits.</p>
+            </div>
+          `;
+                }
+            } catch (error) {
+                console.error('Error loading profits:', error);
+                container.innerHTML = `
+          <div class="no-profit">
+            <h3>❌ Erreur de Connexion</h3>
+            <p>Impossible de se connecter à l'API. Vérifiez que le serveur est en cours d'exécution.</p>
+          </div>
+        `;
+            }
+        }
+
+        function displayProfits(profits) {
+            const container = document.getElementById('profitContainer');
+
+            if (!profits || profits.length === 0) {
+                container.innerHTML = `
+          <div class="no-profit">
+            <h3>📊 Aucun Événement</h3>
+            <p>Aucun événement trouvé dans la base de données.</p>
+          </div>
+        `;
+                return;
+            }
+
+            // Calculate total profit
+            const totalProfit = profits.reduce((sum, item) => sum + parseFloat(item.profit || 0), 0);
+
+            // Filter events with profit > 0 and events with profit = 0
+            const profitableEvents = profits.filter(p => p.profit > 0);
+            const noProfitEvents = profits.filter(p => p.profit === 0);
+
+            let html = '';
+
+            // Display profitable events first
+            if (profitableEvents.length > 0) {
+                html += '<h4 style="color: #353535; margin-bottom: 15px;">💰 Événements Rentables</h4>';
+                profitableEvents.forEach(item => {
+                    html += `
+            <div class="profit-card">
+              <div class="profit-info">
+                <h3>${item.event_title}</h3>
+                <div class="event-details">ID: ${item.event_id} <span class="badge">Actif</span></div>
+              </div>
+              <div class="profit-amount">${parseFloat(item.profit).toFixed(2)} DT</div>
+            </div>
+          `;
+                });
+            }
+
+            // Display events with no profit
+            if (noProfitEvents.length > 0) {
+                html += '<h4 style="color: #656565; margin-top: 30px; margin-bottom: 15px;">📋 Événements Sans Profit</h4>';
+                noProfitEvents.forEach(item => {
+                    html += `
+            <div class="profit-card" style="background: linear-gradient(135deg, #9e9e9e 0%, #757575 100%); opacity: 0.7;">
+              <div class="profit-info">
+                <h3>${item.event_title}</h3>
+                <div class="event-details">ID: ${item.event_id} <span class="badge">Aucune réservation confirmée</span></div>
+              </div>
+              <div class="profit-amount">0.00 DT</div>
+            </div>
+          `;
+                });
+            }
+
+            // Display total profit
+            html += `
+        <div class="total-profit">
+          <h2>💵 Profit Total</h2>
+          <div class="amount">${totalProfit.toFixed(2)} DT</div>
+          <p style="margin-top: 15px; margin-bottom: 0; opacity: 0.8;">
+            ${profitableEvents.length} événement(s) rentable(s) sur ${profits.length} total
+          </p>
+        </div>
+      `;
+
+            container.innerHTML = html;
+        }
+
+        // Load profits on page load
+        document.addEventListener('DOMContentLoaded', loadProfits);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+/* Admin / Backoffice styles for GreenTechHub */
+
+:root {
+    --primary-color: #10b981;
+    --primary-dark: #059669;
+    --dark-color: #1e293b;
+    --gray-color: #64748b;
+    --sidebar-width: 280px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+body { background-color: #f8f9fa; color: #334155; }
+
+/* Dashboard Container */
+.dashboard-container { display: flex; min-height: 100vh; }
+
+/* Sidebar Styles */
+.sidebar { width: var(--sidebar-width); background: linear-gradient(180deg, var(--dark-color) 0%, #0f172a 100%); color: white; position: fixed; height: 100vh; overflow-y: auto; transition: all 0.3s ease; z-index: 1000; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
+.sidebar-header { padding: 25px 20px; border-bottom: 1px solid rgba(255,255,255,0.1); display:flex; align-items:center; gap:12px; }
+.nav-link { color: #cbd5e1; padding: 14px 25px; display:flex; align-items:center; gap:12px; transition: all 0.3s ease; border-left: 4px solid transparent; }
+.nav-link:hover, .nav-link.active { background-color: rgba(255,255,255,0.05); color: white; border-left-color: var(--primary-color); }
+.main-content { flex:1; margin-left: var(--sidebar-width); padding: 30px; transition: all 0.3s ease; }
+
+/* Header / Buttons */
+.header { display:flex; justify-content: space-between; align-items:center; margin-bottom:30px; }
+.header h1 { font-size:28px; font-weight:700; color:var(--dark-color); margin:0; }
+.user-actions { display:flex; gap:15px; }
+
+/* Buttons */
+.btn-primary { background-color: var(--primary-color); border-color: var(--primary-color); }
+.btn-primary:hover { background-color: var(--primary-dark); border-color: var(--primary-dark); }
+
+/* Stats Cards */
+.stats-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:24px; margin-bottom:30px; }
+.stat-card { background:white; border-radius:16px; padding:24px; box-shadow:0 4px 12px rgba(0,0,0,0.05); border:1px solid #e2e8f0; display:flex; justify-content:space-between; align-items:center; }
+
+/* Charts and lists */
+.charts-grid { display:grid; grid-template-columns: 2fr 1fr; gap:24px; margin-bottom:30px; }
+.chart-card, .news-card, .impact-card { background:white; border-radius:16px; padding:24px; box-shadow:0 4px 12px rgba(0,0,0,0.05); border:1px solid #e2e8f0; }
+
+/* Modals (admin) */
+.modal-content { border-radius:20px; overflow:hidden; border:none; }
+.modal-backdrop { background-color: rgba(0,0,0,0.5); }
+
+/* Responsive behaviour for admin layout */
+@media (max-width: 992px) {
+    .sidebar { transform: translateX(-100%); }
+    .sidebar.active { transform: translateX(0); }
+    .main-content { margin-left: 0; }
+}
+
+@media (max-width: 768px) { .stats-grid { grid-template-columns: 1fr 1fr; } }

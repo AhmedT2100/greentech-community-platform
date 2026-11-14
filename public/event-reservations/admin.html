@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenTechHub | Administration Événements</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="web.admin.css">
+    <link rel="stylesheet" href="web.front.css">
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-leaf"></i>
+                <h2>GreenTechHub</h2>
+            </div>
+            <div class="sidebar-menu">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Tableau de Bord</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="admin.html">
+                            <i class="fas fa-users-cog"></i>
+                            <span>Administration</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="evenements.html">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Événements</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <h1>Administration des Événements</h1>
+                <div class="user-actions">
+                    <span class="badge bg-primary">Admin</span>
+                </div>
+            </div>
+
+            <!-- Gestion des Événements -->
+            <div class="chart-card mb-4">
+                <div class="chart-header">
+                    <h3>Gestion des Événements</h3>
+                    <button class="btn btn-success btn-sm" onclick="openAddEventModal()">
+                        <i class="fas fa-plus"></i> Nouvel Événement
+                    </button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Titre</th>
+                                <th>Date</th>
+                                <th>Lieu</th>
+                                <th>Places</th>
+                                <th>Prix</th>
+                                <th>Profit</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="eventsTable">
+                            <!-- Les données seront chargées ici -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Gestion des Réservations -->
+            <div class="chart-card mb-4">
+                <div class="chart-header">
+                    <h3>Gestion des Réservations</h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID Réserv</th>
+                                <th>Utilisateur</th>
+                                <th>Email</th>
+                                <th>Événement</th>
+                                <th>Date Événement</th>
+                                <th>Quantité</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reservationsTable">
+                            <!-- Les données seront chargées ici -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Ajouter/Modifier Événement -->
+    <div class="modal fade" id="eventModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="eventModalTitle">Ajouter un Événement</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="eventForm">
+                        <input type="hidden" id="editEventId">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="eventTitre" class="form-label">Titre *</label>
+                                <input type="text" class="form-control" id="eventTitre" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="eventCategorie" class="form-label">Catégorie</label>
+                                <select class="form-control" id="eventCategorie">
+                                    <option value="Atelier">Atelier</option>
+                                    <option value="Conférence">Conférence</option>
+                                    <option value="Salon">Salon</option>
+                                    <option value="Forum">Forum</option>
+                                    <option value="Activité">Activité</option>
+                                    <option value="Festival">Festival</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="eventDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="eventDescription" rows="3"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label for="eventDate" class="form-label">Date *</label>
+                                <input type="date" class="form-control" id="eventDate" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="eventHeureDebut" class="form-label">Heure Début</label>
+                                <input type="time" class="form-control" id="eventHeureDebut">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="eventHeureFin" class="form-label">Heure Fin</label>
+                                <input type="time" class="form-control" id="eventHeureFin">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="eventLieu" class="form-label">Lieu</label>
+                            <input type="text" class="form-control" id="eventLieu">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="eventPrix" class="form-label">Prix (DT)</label>
+                                <input type="number" class="form-control" id="eventPrix" min="0" step="0.01" value="0">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="eventPlaces" class="form-label">Places Total *</label>
+                                <input type="number" class="form-control" id="eventPlaces" min="1" required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary" onclick="saveEvent()">Sauvegarder</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="admin.js"></script>
+</body>
+
+</html>

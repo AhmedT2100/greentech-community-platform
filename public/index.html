@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>GreenTechHub | Plateforme des Innovations Durables</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="innovations durables, écologie, technologie verte, énergie solaire, recyclage, mobilité verte"
+        name="keywords">
+    <meta
+        content="GreenTechHub - La plateforme de référence pour découvrir, proposer et voter pour les meilleures innovations écologiques et technologiques."
+        name="description">
+
+    <!-- Favicons -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300|Nunito:400,700&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap CSS File -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="vendor/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="vendor/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="vendor/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Main Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- Dark Mode Stylesheet -->
+    <link href="css/dark-mode.css" rel="stylesheet">
+
+    <!-- Modern Enhancements Stylesheet -->
+    <link href="css/enhancements.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header Section Start -->
+    <header class="header">
+        <div class="container-fluid">
+            <div class="logo pull-left">
+                <h1><a href="index.html">GreenTechHub</a></h1>
+                <!-- <a href="#"><img src="img/logo.png" alt="" title="" /></a>-->
+            </div>
+
+            <nav id="nav-menu-container">
+                <ul class="nav-menu">
+                    <li class="menu-active"><a href="index.html">Accueil</a></li>
+                    <li><a href="about.html">À Propos</a></li>
+                    <li><a href="innovation/index.php">Innovations</a></li>
+                    <li><a href="portfolio.html">Projets</a></li>
+                    <li><a href="events.html">Événements</a></li>
+                    <li><a href="articles/index.php">Articles</a></li>
+                    <li id="reclamationsLink" style="display:none;"><a href="reclamations.html">Réclamations</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li id="loginLink"><a href="#" onclick="openLoginModal(); return false;">Connexion</a></li>
+                    <li id="signupLink"><a href="#" onclick="openSignupModal(); return false;">Inscription</a></li>
+                    <li id="adminLink" style="display:none;"><a href="admin.html">Admin</a></li>
+                    <li id="userInfo" style="display:none;"></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- Header Section End -->
+
+    <!-- Slider Section Start-->
+    <section class="slider">
+        <div class="slider-container">
+            <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
+
+                <ol class="carousel-indicators"></ol>
+
+                <div class="carousel-inner" role="listbox">
+
+                    <div class="carousel-item active">
+                        <div class="carousel-background"><img src="img/slide1.jpg" alt="Slide 1" /></div>
+                        <div class="carousel-container">
+                            <div class="carousel-content">
+                                <h2>Énergie Solaire</h2>
+                                <p>
+                                    Découvrez les dernières innovations en matière d'énergie solaire : panneaux
+                                    photovoltaïques
+                                    nouvelle génération, systèmes de stockage intelligent et solutions pour particuliers
+                                    et entreprises.
+                                </p>
+                                <a href="#services" class="btn-get-started">Découvrir les innovations</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="carousel-background"><img src="img/slide2.jpg" alt="Slide 2" /></div>
+                        <div class="carousel-container">
+                            <div class="carousel-content">
+                                <h2>Recyclage Intelligent</h2>
+                                <p>
+                                    Explorez les technologies de recyclage avancées : tri automatisé, valorisation des
+                                    déchets,
+                                    économie circulaire et solutions innovantes pour réduire notre empreinte écologique.
+                                </p>
+                                <a href="#services" class="btn-get-started">Découvrir les innovations</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="carousel-background"><img src="img/slide3.jpg" alt="Slide 3" /></div>
+                        <div class="carousel-container">
+                            <div class="carousel-content">
+                                <h2>Mobilité Verte</h2>
+                                <p>
+                                    Participez à la révolution de la mobilité durable : véhicules électriques, bornes de
+                                    recharge
+                                    intelligentes, transports en commun écologiques et solutions de micro-mobilité.
+                                </p>
+                                <a href="#services" class="btn-get-started">Découvrir les innovations</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon ion-md-arrow-back" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+
+                <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon ion-md-arrow-forward" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+
+            </div>
+        </div>
+    </section>
+    <!-- Slider Section End-->
+
+    <!-- About Us Section Start-->
+    <section class="about">
+        <div class="container">
+            <header class="section-header">
+                <h3>À Propos de GreenTechHub</h3>
+                <p>
+                    GreenTechHub est la plateforme de référence pour centraliser toutes les innovations écologiques et
+                    technologiques
+                    visant à protéger notre environnement et construire un avenir durable.
+                </p>
+            </header>
+
+            <div class="row align-items-center about-row">
+                <div class="col-md-6">
+                    <img src="img/about.jpg" alt="" class="img-fluid">
+                </div>
+                <div class="col-md-6">
+                    <h2 class="title"><a href="#">Bienvenue sur GreenTechHub</a></h2>
+                    <p>
+                        Notre plateforme permet à chacun de consulter, proposer et voter pour les meilleures innovations
+                        durables dans les domaines de l'énergie solaire, du recyclage, de la mobilité verte et bien plus
+                        encore.
+                        Rejoignez une communauté engagée pour un futur plus vert et technologique.
+                    </p>
+                    <div class="read-more">
+                        <a href="about.html">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row about-cols">
+                <div class="col-md-4">
+                    <div class="about-col">
+                        <div class="img">
+                            <img src="img/about-mission.jpg" alt="" class="img-fluid">
+                            <div class="icon"><i class="ion-ios-disc"></i></div>
+                        </div>
+                        <h2 class="title"><a href="#">Notre Mission</a></h2>
+                        <p>
+                            Centraliser et promouvoir les innovations écologiques mondiales pour accélérer la transition
+                            vers un monde durable. Nous croyons que la technologie et l'écologie peuvent transformer
+                            notre avenir.
+                        </p>
+                        <div class="read-more">
+                            <a href="#">En savoir plus</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="about-col">
+                        <div class="img">
+                            <img src="img/about-vision.jpg" alt="" class="img-fluid">
+                            <div class="icon"><i class="ion-ios-eye"></i></div>
+                        </div>
+                        <h2 class="title"><a href="#">Notre Vision</a></h2>
+                        <p>
+                            Créer la plus grande communauté mondiale d'innovateurs écologiques où chaque idée compte.
+                            Ensemble, nous construisons un écosystème d'innovations durables accessibles à tous.
+                        </p>
+                        <div class="read-more">
+                            <a href="#">En savoir plus</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="about-col">
+                        <div class="img">
+                            <img src="img/about-objective.jpg" alt="" class="img-fluid">
+                            <div class="icon"><i class="ion-ios-options"></i></div>
+                        </div>
+                        <h2 class="title"><a href="#">Nos Objectifs</a></h2>
+                        <p>
+                            Faciliter l'accès aux innovations durables, encourager la collaboration entre innovateurs,
+                            et permettre à chacun de contribuer activement à la protection de notre planète.
+                        </p>
+                        <div class="read-more">
+                            <a href="#">En savoir plus</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Us Section End -->
+
+    <!-- Services Section Start -->
+    <section id="services" class="services">
+        <div class="container">
+            <header class="section-header">
+                <h3>Catégories d'Innovations</h3>
+                <p>
+                    Découvrez les différentes catégories d'innovations durables disponibles sur notre plateforme.
+                    Consultez, proposez et votez pour les meilleures solutions écologiques.
+                </p>
+            </header>
+            <div class="row">
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="single-service">
+                        <i class="ion-ios-sunny"></i>
+                        <h4><a href="portfolio.html">Énergie Solaire</a></h4>
+                        <p>Panneaux photovoltaïques, systèmes de stockage et solutions d'énergie solaire.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="single-service">
+                        <i class="ion-ios-refresh"></i>
+                        <h4><a href="portfolio.html">Recyclage</a></h4>
+                        <p>Technologies de tri, valorisation des déchets et économie circulaire.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="single-service">
+                        <i class="ion-ios-car"></i>
+                        <h4><a href="portfolio.html">Mobilité Verte</a></h4>
+                        <p>Véhicules électriques, bornes de recharge et transports durables.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="single-service">
+                        <i class="ion-ios-water"></i>
+                        <h4><a href="portfolio.html">Gestion de l'Eau</a></h4>
+                        <p>Systèmes de purification, conservation et gestion intelligente de l'eau.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="single-service">
+                        <i class="ion-ios-flash"></i>
+                        <h4><a href="portfolio.html">Énergies Renouvelables</a></h4>
+                        <p>Éolien, hydroélectrique, biométhane et autres sources d'énergie verte.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="single-service">
+                        <i class="ion-ios-leaf"></i>
+                        <h4><a href="portfolio.html">Agriculture Durable</a></h4>
+                        <p>Permaculture, agriculture urbaine et techniques de culture écologiques.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="single-service">
+                        <i class="ion-ios-home"></i>
+                        <h4><a href="portfolio.html">Habitat Écologique</a></h4>
+                        <p>Matériaux durables, isolation naturelle et constructions éco-responsables.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="single-service">
+                        <i class="ion-ios-cloud"></i>
+                        <h4><a href="portfolio.html">Qualité de l'Air</a></h4>
+                        <p>Purificateurs d'air, réduction des émissions et surveillance environnementale.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services Section End -->
+
+    <!-- Call To Action Start -->
+    <section class="call-to-action">
+        <div class="container text-center">
+            <header class="section-header">
+                <h3>Rejoignez la Communauté</h3>
+                <p>
+                    Vous avez une idée innovante pour un avenir plus durable ? Proposez votre innovation,
+                    votez pour vos projets préférés et participez à la révolution écologique !
+                </p>
+            </header>
+            <a class="cta-btn" href="#" onclick="openSignupModal(); return false;">Proposer une Innovation</a>
+        </div>
+    </section>
+    <!-- Call To Action End -->
+
+
+
+    <!-- Skills Section Start-->
+    <section class="skills">
+        <div class="container">
+            <header class="section-header">
+                <h3>Pourquoi Choisir GreenTechHub</h3>
+                <p>
+                    Nous offrons une plateforme complète et fiable pour découvrir, partager et promouvoir les
+                    innovations écologiques.
+                    Nos outils avancés facilitent la collaboration entre innovateurs et accélèrent la transition
+                    écologique mondiale.
+                </p>
+            </header>
+
+            <div class="skills-content">
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0"
+                        aria-valuemax="100">
+                        <span class="skill">Fiabilité de la plateforme <i class="val">100%</i></span>
+                    </div>
+                </div>
+
+                <div class="progress">
+                    <div class="progress-bar bg-info" role="progressbar" aria-valuenow="95" aria-valuemin="0"
+                        aria-valuemax="100">
+                        <span class="skill">Sécurité des données <i class="val">95%</i></span>
+                    </div>
+                </div>
+
+                <div class="progress">
+                    <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="98" aria-valuemin="0"
+                        aria-valuemax="100">
+                        <span class="skill">Qualité du contenu <i class="val">98%</i></span>
+                    </div>
+                </div>
+
+                <div class="progress">
+                    <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="99" aria-valuemin="0"
+                        aria-valuemax="100">
+                        <span class="skill">Satisfaction utilisateur <i class="val">99%</i></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row counters">
+                <div class="col-lg-3 col-6 text-center">
+                    <h2 data-toggle="counter-up">5847</h2>
+                    <p>Innovations enregistrées</p>
+                </div>
+
+                <div class="col-lg-3 col-6 text-center">
+                    <h2 data-toggle="counter-up">12340</h2>
+                    <p>Utilisateurs actifs</p>
+                </div>
+
+                <div class="col-lg-3 col-6 text-center">
+                    <h2 data-toggle="counter-up">234</h2>
+                    <p>Projets approuvés</p>
+                </div>
+
+                <div class="col-lg-3 col-6 text-center">
+                    <h2 data-toggle="counter-up">89</h2>
+                    <p>Pays participants</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Skills Section End-->
+
+    <!-- Portfolio Section Start -->
+    <section class="portfolio">
+        <div class="container">
+
+            <header class="section-header">
+                <h3 class="section-title">Projets Approuvés</h3>
+                <p>
+                    Découvrez les innovations les plus prometteuses et les plus votées par notre communauté.
+                    Ces projets représentent l'avant-garde de la technologie verte et du développement durable.
+                </p>
+            </header>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul id="portfolio-flters">
+                        <li data-filter="*" class="filter-active">Tous</li>
+                        <li data-filter=".energie">Énergie</li>
+                        <li data-filter=".recyclage">Recyclage</li>
+                        <li data-filter=".mobilite">Mobilité</li>
+                        <li data-filter=".agriculture">Agriculture</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row portfolio-container">
+                <div class="col-lg-4 col-md-6 portfolio-item energie">
+                    <div class="portfolio-wrap">
+                        <figure>
+                            <img src="img/portfolio-1.jpg" class="img-fluid" alt="Portfolio">
+                            <a href="img/portfolio-1.jpg" data-lightbox="portfolio"
+                                data-title="Panneaux Solaires Haute Efficacité" class="link-preview" title="Preview"><i
+                                    class="ion-md-eye"></i></a>
+                            <a href="#" class="link-details project-guide-btn" data-project="1"
+                                title="Plus de détails"><i class="ion-md-open"></i></a>
+                        </figure>
+
+                        <div class="portfolio-info">
+                            <h4>Panneaux Solaires Haute Efficacité</h4>
+                            <p>Énergie Renouvelable - 4.9/5 ⭐ 2,847 votes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item recyclage">
+                    <div class="portfolio-wrap">
+                        <figure>
+                            <img src="img/portfolio-2.jpg" class="img-fluid" alt="Portfolio">
+                            <a href="img/portfolio-2.jpg" class="link-preview" data-lightbox="portfolio"
+                                data-title="Système de Tri Automatisé" title="Preview"><i class="ion-md-eye"></i></a>
+                            <a href="" class="link-details" title="Plus de détails"><i class="ion-md-open"></i></a>
+                        </figure>
+
+                        <div class="portfolio-info">
+                            <h4>Système de Tri Automatisé</h4>
+                            <p>Recyclage Intelligent - 4.8/5 ⭐ 2,156 votes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item mobilite">
+                    <div class="portfolio-wrap">
+                        <figure>
+                            <img src="img/portfolio-3.jpg" class="img-fluid" alt="Portfolio">
+                            <a href="img/portfolio-3.jpg" class="link-preview" data-lightbox="portfolio"
+                                data-title="Borne de Recharge Ultra-Rapide" title="Preview"><i
+                                    class="ion-md-eye"></i></a>
+                            <a href="#" class="link-details project-guide-btn" data-project="3"
+                                title="Plus de détails"><i class="ion-md-open"></i></a>
+                        </figure>
+
+                        <div class="portfolio-info">
+                            <h4>Borne de Recharge Ultra-Rapide</h4>
+                            <p>Mobilité Électrique - 4.9/5 ⭐ 3,021 votes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item agriculture">
+                    <div class="portfolio-wrap">
+                        <figure>
+                            <img src="img/portfolio-4.jpg" class="img-fluid" alt="Portfolio">
+                            <a href="img/portfolio-4.jpg" data-lightbox="portfolio"
+                                data-title="Système d'Irrigation Intelligent" class="link-preview" title="Preview"><i
+                                    class="ion-md-eye"></i></a>
+                            <a href="#" class="link-details project-guide-btn" data-project="4"
+                                title="Plus de détails"><i class="ion-md-open"></i></a>
+                        </figure>
+
+                        <div class="portfolio-info">
+                            <h4>Système d'Irrigation Intelligent</h4>
+                            <p>Agriculture Durable - 4.7/5 ⭐ 1,834 votes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item energie">
+                    <div class="portfolio-wrap">
+                        <figure>
+                            <img src="img/portfolio-5.jpg" class="img-fluid" alt="Portfolio">
+                            <a href="img/portfolio-5.jpg" class="link-preview" data-lightbox="portfolio"
+                                data-title="Batterie Lithium-Métal Performante" title="Preview"><i
+                                    class="ion-md-eye"></i></a>
+                            <a href="#" class="link-details project-guide-btn" data-project="5"
+                                title="Plus de détails"><i class="ion-md-open"></i></a>
+                        </figure>
+
+                        <div class="portfolio-info">
+                            <h4>Batterie Lithium-Métal Performante</h4>
+                            <p>Stockage Énergie - 4.8/5 ⭐ 2,456 votes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item recyclage">
+                    <div class="portfolio-wrap">
+                        <figure>
+                            <img src="img/portfolio-6.jpg" class="img-fluid" alt="Portfolio">
+                            <a href="img/portfolio-6.jpg" class="link-preview" data-lightbox="portfolio"
+                                data-title="Plateforme de Recyclage Communautaire" title="Preview"><i
+                                    class="ion-md-eye"></i></a>
+                            <a href="#" class="link-details project-guide-btn" data-project="6"
+                                title="Plus de détails"><i class="ion-md-open"></i></a>
+                        </figure>
+
+                        <div class="portfolio-info">
+                            <h4>Plateforme de Recyclage Communautaire</h4>
+                            <p>Économie Circulaire - 4.6/5 ⭐ 1,923 votes</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- Portfolio Section End -->
+
+    <!-- Team Section Start -->
+    <section class="team">
+        <div class="container">
+            <header class="section-header">
+                <h3 class="section-title">Notre Équipe</h3>
+                <p>
+                    Rencontrez les innovateurs passionnés qui font fonctionner GreenTechHub.
+                    Une équipe dévouée à la promotion des technologies écologiques et à la construction d'un avenir
+                    durable.
+                </p>
+            </header>
+
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="card card-block">
+                        <a href="#"><img alt="" class="team-img" src="img/team-member-1.jpg">
+                            <div class="card-title-wrap">
+                                <span class="card-title">Adem Trabelsi</span> <span class="card-text">Directeur
+                                    Technologique</span>
+                                <div class="social-nav">
+                                    <a href="#"><i class="ion-logo-twitter"></i></a>
+                                    <a href="#"><i class="ion-logo-facebook"></i></a>
+                                    <a href="#"><i class="ion-logo-linkedin"></i></a>
+                                    <a href="#"><i class="ion-logo-instagram"></i></a>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="card card-block">
+                        <a href="#"><img alt="" class="team-img" src="img/team-member-3.jpg">
+                            <div class="card-title-wrap">
+                                <span class="card-title">Ahmed Sadaoui</span> <span class="card-text">Chef de
+                                    Projets</span>
+                                <div class="social-nav">
+                                    <a href="#"><i class="ion-logo-twitter"></i></a>
+                                    <a href="#"><i class="ion-logo-facebook"></i></a>
+                                    <a href="#"><i class="ion-logo-linkedin"></i></a>
+                                    <a href="#"><i class="ion-logo-instagram"></i></a>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="card card-block">
+                        <a href="#"><img alt="" class="team-img" src="img/team-member-4.jpg">
+                            <div class="card-title-wrap">
+                                <span class="card-title">Hanine Chakhari</span> <span class="card-text">Responsable
+                                    Marketing</span>
+                                <div class="social-nav">
+                                    <a href="#"><i class="ion-logo-twitter"></i></a>
+                                    <a href="#"><i class="ion-logo-facebook"></i></a>
+                                    <a href="#"><i class="ion-logo-linkedin"></i></a>
+                                    <a href="#"><i class="ion-logo-instagram"></i></a>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="card card-block">
+                        <a href="#"><img alt="" class="team-img" src="img/team-member-5.jpg">
+                            <div class="card-title-wrap">
+                                <span class="card-title">Mohamed Nour Nagara</span> <span class="card-text">Responsable
+                                    Communauté</span>
+                                <div class="social-nav">
+                                    <a href="#"><i class="ion-logo-twitter"></i></a>
+                                    <a href="#"><i class="ion-logo-facebook"></i></a>
+                                    <a href="#"><i class="ion-logo-linkedin"></i></a>
+                                    <a href="#"><i class="ion-logo-instagram"></i></a>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="card card-block">
+                        <a href="#"><img alt="" class="team-img" src="img/team-member-2.png">
+                            <div class="card-title-wrap">
+                                <span class="card-title">Ahmed Loukil</span> <span class="card-text">Responsable
+                                    Développement</span>
+                                <div class="social-nav">
+                                    <a href="#"><i class="ion-logo-twitter"></i></a>
+                                    <a href="#"><i class="ion-logo-facebook"></i></a>
+                                    <a href="#"><i class="ion-logo-linkedin"></i></a>
+                                    <a href="#"><i class="ion-logo-instagram"></i></a>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Team Section End -->
+
+
+
+
+
+    <!-- Footer Start -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 footer-info">
+                        <h3>EVERGREEN</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a tortor commodo,
+                            sollicitudin velit nec, lobortis erat. Sed rutrum metus ac augue scelerisque,
+                            vel commodo
+                            erat commodo. Mauris quis mattis sem. Maecenas dictum nunc.
+                        </p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>About Us</h4>
+                        <ul>
+                            <li><i class="ion-md-arrow-dropright"></i> <a href="#">Home</a></li>
+                            <li><i class="ion-md-arrow-dropright"></i> <a href="#">About us</a></li>
+                            <li><i class="ion-md-arrow-dropright"></i> <a href="#">Our services</a></li>
+                            <li><i class="ion-md-arrow-dropright"></i> <a href="#">Terms & condition</a>
+                            </li>
+                            <li><i class="ion-md-arrow-dropright"></i> <a href="#">Privacy policy</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <h4>Contact Us</h4>
+                        <p>
+                            1300 Center Avenue<br>
+                            Fresno, California<br>
+                            United States <br>
+                            <strong>Phone:</strong> +123-456-7890<br>
+                            <strong>Email:</strong> info@example.com<br>
+                        </p>
+
+                        <div class="social-links">
+                            <a href="#"><i class="ion-logo-twitter"></i></a>
+                            <a href="#"><i class="ion-logo-facebook"></i></a>
+                            <a href="#"><i class="ion-logo-linkedin"></i></a>
+                            <a href="#"><i class="ion-logo-instagram"></i></a>
+                            <a href="#"><i class="ion-logo-googleplus"></i></a>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-newsletter">
+                        <h4>Subscription</h4>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                            Ipsum has
+                            been the industry's standard dummy text ever since the 1500s, when an unknown
+                            printer took a
+                            galley of type.</p>
+                        <form action="" method="post">
+                            <input type="email" name="email"><input type="submit" value="Subscribe">
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright 2024 <strong>GreenTechHub</strong>. Tous droits réservés.<br>
+                Plateforme dédiée à l'innovation écologique et au développement durable.
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+
+    <a href="#" class="back-to-top"><i class="ion-md-arrow-dropup"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery/jquery-migrate.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/easing/easing.min.js"></script>
+    <script src="vendor/superfish/hoverIntent.js"></script>
+    <script src="vendor/superfish/superfish.min.js"></script>
+    <script src="vendor/waypoints/waypoints.min.js"></script>
+    <script src="vendor/touchSwipe/jquery.touchSwipe.min.js"></script>
+    <script src="vendor/counterup/counterup.min.js"></script>
+    <script src="vendor/owlcarousel/owl.carousel.min.js"></script>
+    <script src="vendor/isotope/isotope.pkgd.min.js"></script>
+    <script src="vendor/lightbox/js/lightbox.min.js"></script>
+
+    <!-- Main Javascript File -->
+    <script src="js/main.js"></script>
+    <div class="container">
+        <div class="section-header">
+            <h3 class="section-title">Contactez-Nous</h3>
+            <p>
+                Vous avez une question ou un projet innovant à proposer ? Notre équipe est à votre écoute pour vous
+                accompagner
+                dans votre démarche vers une transition écologique réussie.
+            </p>
+        </div>
+
+        <div class="row contact-info">
+            <div class="col-md-4">
+                <div class="contact-address">
+                    <i class="ion-md-pin"></i>
+                    <h3>Adresse</h3>
+                    <address>123 Avenue de l'Innovation Verte<br>75001 Paris, France</address>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="contact-phone">
+                    <i class="ion-md-call"></i>
+                    <h3>Téléphone</h3>
+                    <p><a href="tel:+33123456789">+33 (0)1 23 45 67 89</a></p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="contact-email">
+                    <i class="ion-md-mail"></i>
+                    <h3>Email</h3>
+                    <p><a href="mailto:contact@greentechhub.com">contact@greentechhub.com</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="map">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.991565870957!2d2.3522!3d48.8566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e1f06e2b70f%3A0x40b82c3688c9460!2s75001%20Paris!5e0!3m2!1sfr!2sfr!4v1639575000000"
+                        frameborder="0" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form">
+                    <form class="contactForm">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" placeholder="Votre Nom" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="email" class="form-control" placeholder="Votre Email" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Sujet" />
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" rows="5" placeholder="Votre Message"></textarea>
+                        </div>
+                        <div><button type="submit">Envoyer le Message</button></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+    <!-- Contact Section End -->
+
+    <!-- Footer Start -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 footer-info">
+                        <h3>GreenTechHub</h3>
+                        <p>
+                            La plateforme de référence pour découvrir, proposer et voter pour les innovations
+                            écologiques.
+                            Ensemble, construisons un avenir durable grâce à la technologie verte.
+                        </p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>À Propos</h4>
+                        <ul>
+                            <li><i class="ion-md-arrow-dropright"></i> <a href="index.html">Accueil</a></li>
+                            <li><i class="ion-md-arrow-dropright"></i> <a href="about.html">À Propos</a></li>
+                            <li><i class="ion-md-arrow-dropright"></i> <a href="service.html">Innovations</a></li>
+                            <li><i class="ion-md-arrow-dropright"></i> <a href="portfolio.html">Projets</a></li>
+                            <li><i class="ion-md-arrow-dropright"></i> <a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <h4>Contactez-nous</h4>
+                        <p>
+                            123 Avenue de l'Innovation<br>
+                            Paris, France<br>
+                            <strong>Téléphone:</strong> +33 1 23 45 67 89<br>
+                            <strong>Email:</strong> contact@greentechhub.com<br>
+                        </p>
+
+                        <div class="social-links">
+                            <a href="#"><i class="ion-logo-twitter"></i></a>
+                            <a href="#"><i class="ion-logo-facebook"></i></a>
+                            <a href="#"><i class="ion-logo-linkedin"></i></a>
+                            <a href="#"><i class="ion-logo-instagram"></i></a>
+                            <a href="#"><i class="ion-logo-googleplus"></i></a>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-newsletter">
+                        <h4>Newsletter</h4>
+                        <p>Abonnez-vous pour recevoir les dernières actualités sur les innovations écologiques et les
+                            projets durables de GreenTechHub.</p>
+                        <form action="" method="post">
+                            <input type="email" name="email"><input type="submit" value="Subscribe">
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <a href="https://htmlcodex.com">HTML Codex</a>. All Rights Reserved<br>
+                Template By <a href="https://htmlcodex.com">HTML Codex</a>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+
+    <a href="#" class="back-to-top"><i class="ion-md-arrow-dropup"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery/jquery-migrate.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/easing/easing.min.js"></script>
+    <script src="vendor/superfish/hoverIntent.js"></script>
+    <script src="vendor/superfish/superfish.min.js"></script>
+    <script src="vendor/waypoints/waypoints.min.js"></script>
+    <script src="vendor/touchSwipe/jquery.touchSwipe.min.js"></script>
+    <script src="vendor/counterup/counterup.min.js"></script>
+    <script src="vendor/owlcarousel/owl.carousel.min.js"></script>
+    <script src="vendor/isotope/isotope.pkgd.min.js"></script>
+    <script src="vendor/lightbox/js/lightbox.min.js"></script>
+
+    <!-- Main Javascript File -->
+    <script src="js/main.js"></script>
+
+    <!-- Modals d'authentification -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title"><i class="ion-md-leaf"></i> Connexion</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <p class="text-muted mb-4">Accédez à votre tableau de bord GreenTechHub</p>
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label class="form-label">Adresse Email</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="ion-md-mail"></i></span>
+                                <input type="email" class="form-control" id="loginEmail" placeholder="votre@email.com"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Mot de passe</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="ion-md-lock"></i></span>
+                                <input type="password" class="form-control" id="loginPassword"
+                                    placeholder="Votre mot de passe" required>
+                            </div>
+                        </div>
+                        <div class="mb-3" id="unlockCodeContainer" style="display: none;">
+                            <label for="unlockCode" class="form-label text-danger">Code de sécurité requis</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="ion-md-shield text-danger"></i></span>
+                                <input type="text" class="form-control border-danger" id="unlockCode"
+                                    placeholder="Entrez le code reçu par email">
+                            </div>
+                            <div class="form-text text-danger">Veuillez consulter votre boîte Gmail</div>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Se souvenir de moi</label>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100 mb-3">
+                            <i class="ion-md-log-in"></i> Se connecter
+                        </button>
+                    </form>
+                    <p class="text-center mb-0">Pas encore de compte ? <a href="#" onclick="switchToSignup()">Créer
+                            un
+                            compte</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="signupModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title"><i class="ion-md-leaf"></i> Créer un compte</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <p class="text-muted mb-4">Rejoignez la communauté GreenTechHub</p>
+                    <form id="signupForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Prénom</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="ion-md-person"></i></span>
+                                    <input type="text" class="form-control" id="firstName" placeholder="Votre prénom"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Nom</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="ion-md-person"></i></span>
+                                    <input type="text" class="form-control" id="lastName" placeholder="Votre nom"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Adresse Email</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="ion-md-mail"></i></span>
+                                <input type="email" class="form-control" id="signupEmail" placeholder="votre@email.com"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Mot de passe</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="ion-md-lock"></i></span>
+                                <input type="password" class="form-control" id="signupPassword"
+                                    placeholder="Créez un mot de passe" required>
+                            </div>
+                            <small class="form-text text-muted">Le mot de passe doit contenir au moins 8
+                                caractères</small>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Confirmer le mot de passe</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="ion-md-lock"></i></span>
+                                <input type="password" class="form-control" id="confirmPassword"
+                                    placeholder="Confirmez votre mot de passe" required>
+                            </div>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="acceptTerms" required>
+                            <label class="form-check-label" for="acceptTerms">
+                                J'accepte les conditions d'utilisation
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100 mb-3">
+                            <i class="ion-md-person-add"></i> Créer mon compte
+                        </button>
+                    </form>
+                    <p class="text-center mb-0">Déjà un compte ? <a href="#" onclick="switchToLogin()">Se
+                            connecter</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script d'authentification -->
+    <script src="auth-ui.js?v=2"></script>
+
+    <!-- Project Guide Modal -->
+    <div id="projectGuideModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="projectTitle">Guide du Projet</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="projectContent">
+                    <!-- Content will be populated here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-success">Soutenir ce Projet</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Project guides data
+        const projectGuides = {
+            1: {
+                title: 'Panneaux Solaires Haute Efficacité',
+                content: `
+                    <h4>Vue d'ensemble</h4>
+                    <p>Cette innovation révolutionne la production d'énergie solaire avec une efficacité record de 47% grâce à la technologie multi-jonction perovskite-silicium.</p>
+                    
+                    <h4>Caractéristiques principales</h4>
+                    <ul>
+                        <li><strong>Rendement:</strong> 47% (vs 22% pour les panneaux standards)</li>
+                        <li><strong>Durée de vie:</strong> 40 ans avec garantie</li>
+                        <li><strong>Poids:</strong> 30% plus léger que les alternatives</li>
+                        <li><strong>Installation:</strong> Compatible avec tous les systèmes existants</li>
+                    </ul>
+                    
+                    <h4>Impact environnemental</h4>
+                    <p>Chaque panneau peut alimenter une maison pendant 25 ans, évitant l'émission de 50 tonnes de CO2 équivalent.</p>
+                    
+                    <h4>Statut du projet</h4>
+                    <p>Phase de commercialisation - Premiers tests en route à large échelle</p>
+                `
+            },
+            2: {
+                title: 'Système de Tri Automatisé',
+                content: `
+                    <h4>Vue d'ensemble</h4>
+                    <p>Un système de tri intelligent utilisant l'IA et les capteurs spectraux pour séparer automatiquement les déchets recyclables avec 98% de précision.</p>
+                    
+                    <h4>Caractéristiques principales</h4>
+                    <ul>
+                        <li><strong>Précision:</strong> 98% de classification correcte</li>
+                        <li><strong>Capacité:</strong> 5 tonnes par heure</li>
+                        <li><strong>Apprentissage:</strong> S'améliore avec l'utilisation</li>
+                        <li><strong>Maintenance:</strong> Minimale grâce à la technologie robuste</li>
+                    </ul>
+                    
+                    <h4>Impact environnemental</h4>
+                    <p>Augmente le taux de recyclage de 30% et réduit les déchets en décharge de 40%.</p>
+                    
+                    <h4>Statut du projet</h4>
+                    <p>Déploiement en cours - 15 centres de tri équipés</p>
+                `
+            },
+            3: {
+                title: 'Borne de Recharge Ultra-Rapide',
+                content: `
+                    <h4>Vue d'ensemble</h4>
+                    <p>Technologie de recharge révolutionnaire capable de charger complètement une batterie électrique en 15 minutes, compatible avec tous les véhicules électriques.</p>
+                    
+                    <h4>Caractéristiques principales</h4>
+                    <ul>
+                        <li><strong>Vitesse:</strong> 80% de charge en 15 minutes</li>
+                        <li><strong>Puissance:</strong> 350 kW</li>
+                        <li><strong>Compatibilité:</strong> Tous les standards de batterie</li>
+                        <li><strong>Sécurité:</strong> Système de refroidissement avancé</li>
+                    </ul>
+                    
+                    <h4>Impact environnemental</h4>
+                    <p>Élimine l'anxiété d'autonomie et accélère l'adoption des véhicules électriques à l'échelle mondiale.</p>
+                    
+                    <h4>Statut du projet</h4>
+                    <p>Pilote en cours - 100 bornes installées en Europe</p>
+                `
+            },
+            4: {
+                title: 'Système d\'Irrigation Intelligent',
+                content: `
+                    <h4>Vue d'ensemble</h4>
+                    <p>Système d'irrigation connecté utilisant des capteurs IoT et l'IA pour optimiser la consommation d'eau dans l'agriculture, réduisant jusqu'à 50% la consommation.</p>
+                    
+                    <h4>Caractéristiques principales</h4>
+                    <ul>
+                        <li><strong>Économie d'eau:</strong> Jusqu'à 50% de réduction</li>
+                        <li><strong>Capteurs:</strong> Humidité, température, luminosité</li>
+                        <li><strong>Couverture:</strong> Jusqu'à 10 hectares</li>
+                        <li><strong>Rendement:</strong> Augmentation de 20-30% des récoltes</li>
+                    </ul>
+                    
+                    <h4>Impact environnemental</h4>
+                    <p>Préserve les ressources en eau tout en augmentant la productivité agricole et en réduisant l'usage de pesticides.</p>
+                    
+                    <h4>Statut du projet</h4>
+                    <p>Déploiement agricole - 500+ fermes équipées</p>
+                `
+            },
+            5: {
+                title: 'Batterie Lithium-Métal Performante',
+                content: `
+                    <h4>Vue d'ensemble</h4>
+                    <p>Nouvelle génération de batterie utilisant l'anode lithium-métal pour offrir une densité énergétique 40% plus élevée et une durée de vie doublée.</p>
+                    
+                    <h4>Caractéristiques principales</h4>
+                    <ul>
+                        <li><strong>Densité énergétique:</strong> 450 Wh/kg (vs 260 Wh/kg standard)</li>
+                        <li><strong>Cycles de charge:</strong> 1000+ cycles</li>
+                        <li><strong>Temps de charge:</strong> 30 minutes pour 80%</li>
+                        <li><strong>Sécurité:</strong> Certification A+ pour tous les tests</li>
+                    </ul>
+                    
+                    <h4>Impact environnemental</h4>
+                    <p>Augmente l'autonomie des véhicules électriques de 40% et réduit les besoins en matériaux miniers de 30%.</p>
+                    
+                    <h4>Statut du projet</h4>
+                    <p>Production initiale - Partenariats avec 5 constructeurs automobiles</p>
+                `
+            },
+            6: {
+                title: 'Plateforme de Recyclage Communautaire',
+                content: `
+                    <h4>Vue d'ensemble</h4>
+                    <p>Plateforme numérique communautaire qui crée un marché décentralisé pour les matériaux recyclables, récompensant les contributeurs et facilitant l'économie circulaire.</p>
+                    
+                    <h4>Caractéristiques principales</h4>
+                    <ul>
+                        <li><strong>Utilisateurs:</strong> 50,000+ membres actifs</li>
+                        <li><strong>Matériaux:</strong> Plastique, métal, papier, électronique</li>
+                        <li><strong>Récompenses:</strong> Points convertibles en crédits</li>
+                        <li><strong>Impact:</strong> 2000+ tonnes recyclées</li>
+                    </ul>
+                    
+                    <h4>Impact environnemental</h4>
+                    <p>Encourage le recyclage communautaire et crée une économie circulaire locale, réduisant les déchets de 35%.</p>
+                    
+                    <h4>Statut du projet</h4>
+                    <p>En expansion - Disponible dans 20 villes, lancement mondial prévu</p>
+                `
+            }
+        };
+
+        // Handle project guide button clicks
+        document.querySelectorAll('.project-guide-btn').forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                const projectId = this.getAttribute('data-project');
+                const guide = projectGuides[projectId];
+
+                if (guide) {
+                    document.getElementById('projectTitle').textContent = guide.title;
+                    document.getElementById('projectContent').innerHTML = guide.content;
+
+                    // Show modal using Bootstrap
+                    $('#projectGuideModal').modal('show');
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

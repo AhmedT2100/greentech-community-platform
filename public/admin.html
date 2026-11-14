@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenTechHub | Administration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="css/dark-mode.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-leaf"></i>
+                <h2>GreenTechHub</h2>
+            </div>
+            <div class="sidebar-menu">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Retour</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="admin.html">
+                            <i class="fas fa-users-cog"></i>
+                            <span>Administration</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="accounts/View/Backoffice/readUser.php">
+                            <i class="fas fa-users"></i>
+                            <span>Gestion Utilisateurs</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showTab('metrics'); return false;">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Métriques Avancées</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showTab('articles'); return false;">
+                            <i class="fas fa-newspaper"></i>
+                            <span>Gestion des articles et Commentaires</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <h1>Administration GreenTechHub</h1>
+                <div class="user-actions">
+                    <span class="badge bg-primary">Admin</span>
+                    <button class="btn btn-outline-secondary" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Déconnexion
+                    </button>
+                </div>
+            </div>
+
+            <!-- Navigation par onglets -->
+            <ul class="nav nav-tabs mb-4" id="adminTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="dashboard-tab" data-bs-toggle="tab" data-bs-target="#dashboard"
+                        type="button" role="tab">
+                        <i class="fas fa-home"></i> Dashboard
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="metrics-tab" data-bs-toggle="tab" data-bs-target="#metrics"
+                        type="button" role="tab">
+                        <i class="fas fa-chart-line"></i> Métriques Avancées
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="events-tab" data-bs-toggle="tab" data-bs-target="#events" type="button"
+                        role="tab">
+                        <i class="fas fa-calendar-alt"></i> Événements
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="reservations-tab" data-bs-toggle="tab" data-bs-target="#reservations"
+                        type="button" role="tab">
+                        <i class="fas fa-clipboard-list"></i> Réservations
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="reclamations-tab" data-bs-toggle="tab" data-bs-target="#reclamations"
+                        type="button" role="tab">
+                        <i class="fas fa-exclamation-circle"></i> Réclamations
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="articles-tab" data-bs-toggle="tab" data-bs-target="#articles"
+                        type="button" role="tab">
+                        <i class="fas fa-newspaper"></i> Gestion des articles et Commentaires
+                    </button>
+                </li>
+            </ul>
+
+            <!-- Contenu des onglets -->
+            <div class="tab-content" id="adminTabsContent">
+                <!-- ONGLET DASHBOARD -->
+                <div class="tab-pane fade show active" id="dashboard" role="tabpanel">
+                    <!-- Statistiques Admin -->
+                    <div class="stats-grid">
+                        <div class="stat-card stat-1">
+                            <div class="stat-info">
+                                <h3>Utilisateurs Totaux</h3>
+                                <div class="stat-value" id="totalUsers">0</div>
+                                <div class="stat-change positive">
+                                    <i class="fas fa-users"></i> Utilisateurs actifs
+                                </div>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                        </div>
+
+                        <div class="stat-card stat-2">
+                            <div class="stat-info">
+                                <h3>Innovations Postées</h3>
+                                <div class="stat-value" id="totalInnovations">0</div>
+                                <div class="stat-change positive">
+                                    <i class="fas fa-lightbulb"></i> Innovations totales
+                                </div>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                        </div>
+
+                        <div class="stat-card stat-3">
+                            <div class="stat-info">
+                                <h3>Administrateurs</h3>
+                                <div class="stat-value" id="totalAdmins">0</div>
+                                <div class="stat-change">
+                                    <i class="fas fa-shield-alt"></i> Accès admin
+                                </div>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gestion des Utilisateurs -->
+                    <div class="chart-card mb-4">
+                        <div class="chart-header">
+                            <h3>Gestion des Utilisateurs</h3>
+                            <button class="btn btn-primary btn-sm" onclick="refreshUsers()">
+                                <i class="fas fa-sync-alt"></i> Actualiser
+                            </button>
+                        </div>
+
+                        <!-- Barre de recherche -->
+                        <div class="p-3 border-bottom">
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                <input type="text" class="form-control" id="searchUser"
+                                    placeholder="Rechercher par nom ou prénom..." onkeyup="searchUsers()">
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>ID</th>
+                                        <th>Nom</th>
+                                        <th>Email</th>
+                                        <th>Rôle</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="usersTable">
+                                    <!-- Les données seront chargées ici -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="p-3 border-top d-flex justify-content-between align-items-center">
+                            <div>
+                                <span id="paginationInfo">Affichage 0-0 sur 0 utilisateurs</span>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-outline-primary btn-sm" id="prevPage" onclick="previousPage()"
+                                    disabled>
+                                    <i class="fas fa-chevron-left"></i> Précédent
+                                </button>
+                                <button class="btn btn-outline-primary btn-sm" id="nextPage" onclick="nextPage()"
+                                    disabled>
+                                    Suivant <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Historique des Innovations -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Historique des Innovations</h3>
+                            <button class="btn btn-primary btn-sm" onclick="refreshHistory()">
+                                <i class="fas fa-sync-alt"></i> Actualiser
+                            </button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID Historique</th>
+                                        <th>Utilisateur</th>
+                                        <th>ID Innovation</th>
+                                        <th>Date de Publication</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="historyTable">
+                                    <!-- Les données seront chargées ici -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ONGLET MÉTRIQUES AVANCÉES -->
+                <div class="tab-pane fade" id="metrics" role="tabpanel">
+                    <!-- Métriques en temps réel -->
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            <div class="stat-card"
+                                style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                <div class="stat-info text-white">
+                                    <h3>Actifs 7j</h3>
+                                    <div class="stat-value" id="activeUsers7d">0</div>
+                                    <div class="stat-change">
+                                        <i class="fas fa-user-check"></i> Utilisateurs actifs
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card"
+                                style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                                <div class="stat-info text-white">
+                                    <h3>Sessions Aujourd'hui</h3>
+                                    <div class="stat-value" id="sessionsToday">0</div>
+                                    <div class="stat-change">
+                                        <i class="fas fa-clock"></i> Sessions actives
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card"
+                                style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                                <div class="stat-info text-white">
+                                    <h3>Durée Moyenne</h3>
+                                    <div class="stat-value" id="avgSessionDuration">0</div>
+                                    <div class="stat-change">
+                                        <i class="fas fa-hourglass-half"></i> minutes
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card"
+                                style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                                <div class="stat-info text-white">
+                                    <h3>Taux Rétention</h3>
+                                    <div class="stat-value" id="retentionRate">0</div>
+                                    <div class="stat-change">
+                                        <i class="fas fa-percentage"></i> Rétention
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Graphiques et Analytics -->
+                    <div class="row mb-4">
+                        <!-- Croissance des utilisateurs -->
+                        <div class="col-md-6">
+                            <div class="chart-card">
+                                <div class="chart-header">
+                                    <h3><i class="fas fa-chart-area"></i> Croissance Utilisateurs</h3>
+                                    <select class="form-select form-select-sm" style="width: auto;"
+                                        onchange="loadUserGrowth(this.value)">
+                                        <option value="7">7 jours</option>
+                                        <option value="30" selected>30 jours</option>
+                                        <option value="90">90 jours</option>
+                                    </select>
+                                </div>
+                                <canvas id="userGrowthChart" height="250"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Statistiques de sessions -->
+                        <div class="col-md-6">
+                            <div class="chart-card">
+                                <div class="chart-header">
+                                    <h3><i class="fas fa-chart-bar"></i> Sessions Quotidiennes</h3>
+                                    <select class="form-select form-select-sm" style="width: auto;"
+                                        onchange="loadSessionStats(this.value)">
+                                        <option value="7" selected>7 jours</option>
+                                        <option value="30">30 jours</option>
+                                    </select>
+                                </div>
+                                <canvas id="sessionStatsChart" height="250"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- KPIs et Objectifs -->
+                    <div class="chart-card mb-4">
+                        <div class="chart-header">
+                            <h3><i class="fas fa-bullseye"></i> Objectifs & KPIs</h3>
+                            <button class="btn btn-primary btn-sm" onclick="loadKPIProgress()">
+                                <i class="fas fa-sync-alt"></i> Actualiser
+                            </button>
+                        </div>
+                        <div id="kpiContainer" class="p-3">
+                            <!-- Les KPIs seront chargés ici -->
+                        </div>
+                    </div>
+
+                    <!-- Statistiques détaillées -->
+                    <div class="row mb-4">
+                        <!-- Statistiques par appareil -->
+                        <div class="col-md-6">
+                            <div class="chart-card">
+                                <div class="chart-header">
+                                    <h3><i class="fas fa-mobile-alt"></i> Répartition par Appareil</h3>
+                                </div>
+                                <canvas id="deviceStatsChart" height="250"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Statistiques d'emails -->
+                        <div class="col-md-6">
+                            <div class="chart-card">
+                                <div class="chart-header">
+                                    <h3><i class="fas fa-envelope"></i> Performance Emails</h3>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-sm" id="emailStatsTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Type</th>
+                                                <th>Envoyés</th>
+                                                <th>Ouverts</th>
+                                                <th>Taux</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Les données seront chargées ici -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Géolocalisation -->
+                    <div class="chart-card mb-4">
+                        <div class="chart-header">
+                            <h3><i class="fas fa-globe"></i> Répartition Géographique</h3>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped" id="geoStatsTable">
+                                <thead>
+                                    <tr>
+                                        <th>Pays</th>
+                                        <th>Ville</th>
+                                        <th>Sessions</th>
+                                        <th>Utilisateurs Uniques</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Les données seront chargées ici -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Activité en temps réel -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3><i class="fas fa-broadcast-tower"></i> Activité en Temps Réel</h3>
+                            <span class="badge bg-success">
+                                <i class="fas fa-circle" style="font-size: 8px;"></i>
+                                <span id="onlineUsersCount">0</span> en ligne
+                            </span>
+                        </div>
+                        <div class="p-3" id="realtimeActivity" style="max-height: 400px; overflow-y: auto;">
+                            <!-- Les événements en temps réel seront affichés ici -->
+                        </div>
+                    </div>
+
+                    <!-- Export de rapports -->
+                    <div class="chart-card mt-4">
+                        <div class="chart-header">
+                            <h3><i class="fas fa-file-export"></i> Exporter les Rapports</h3>
+                        </div>
+                        <div class="p-3">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="form-label">Type de rapport</label>
+                                    <select class="form-select" id="reportType">
+                                        <option value="general">Rapport Général</option>
+                                        <option value="users">Utilisateurs</option>
+                                        <option value="sessions">Sessions</option>
+                                        <option value="emails">Emails</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label">Date début</label>
+                                    <input type="date" class="form-control" id="reportStartDate" value="">
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label">Date fin</label>
+                                    <input type="date" class="form-control" id="reportEndDate" value="">
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-label">&nbsp;</label>
+                                    <button class="btn btn-success w-100" onclick="exportReport()">
+                                        <i class="fas fa-download"></i> Exporter CSV
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ONGLET EVENEMENTS -->
+                <div class="tab-pane fade" id="events" role="tabpanel">
+                    <div class="chart-card mb-4">
+                        <div class="chart-header">
+                            <h3>Gestion des Événements</h3>
+                            <div>
+                                <button class="btn btn-primary btn-sm me-1" onclick="loadEvents()">
+                                    <i class="fas fa-sync-alt"></i> Actualiser
+                                </button>
+                                <button class="btn btn-success btn-sm" onclick="openAddEventModal()">
+                                    <i class="fas fa-plus"></i> Nouvel Événement
+                                </button>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Titre</th>
+                                        <th>Date</th>
+                                        <th>Lieu</th>
+                                        <th>Places</th>
+                                        <th>Prix</th>
+                                        <th>Profit</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="eventsTable">
+                                    <!-- Les données seront chargées ici -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ONGLET RESERVATIONS -->
+                <div class="tab-pane fade" id="reservations" role="tabpanel">
+                    <div class="chart-card mb-4">
+                        <div class="chart-header">
+                            <h3>Gestion des Réservations</h3>
+                            <button class="btn btn-primary btn-sm" onclick="loadReservations()">
+                                <i class="fas fa-sync-alt"></i> Actualiser
+                            </button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID Réserv</th>
+                                        <th>Utilisateur</th>
+                                        <th>Email</th>
+                                        <th>Événement</th>
+                                        <th>Date Événement</th>
+                                        <th>Quantité</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="reservationsTable">
+                                    <!-- Les données seront chargées ici -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ONGLET RECLAMATIONS -->
+                <div class="tab-pane fade" id="reclamations" role="tabpanel">
+                    <div class="chart-card mb-4">
+                        <div class="chart-header">
+                            <h3>Gestion des Réclamations</h3>
+                            <div>
+                                <button class="btn btn-primary btn-sm me-1" onclick="loadAllReclamations()">
+                                    <i class="fas fa-sync-alt"></i> Actualiser
+                                </button>
+                                <button class="btn btn-success btn-sm me-1" onclick="exportAllReclamationsPDF()">
+                                    <i class="fas fa-file-pdf"></i> Exporter Tout (PDF)
+                                </button>
+                                <button class="btn btn-info btn-sm" onclick="showReclamationStats()">
+                                    <i class="fas fa-chart-pie"></i> Statistiques
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Search and Filters -->
+                        <div class="p-3 border-bottom">
+                            <div class="row">
+                                <div class="col-md-6 mb-2">
+                                    <input type="text" class="form-control" id="searchReclamations"
+                                        placeholder="Rechercher..." onkeyup="searchReclamations()">
+                                </div>
+                                <div class="col-md-3 mb-2">
+                                    <select class="form-control" id="filterStatus" onchange="searchReclamations()">
+                                        <option value="">Tous les statuts</option>
+                                        <option value="en attente">En attente</option>
+                                        <option value="en cours">En cours</option>
+                                        <option value="résolue">Résolue</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 mb-2">
+                                    <select class="form-control" id="filterPriority" onchange="searchReclamations()">
+                                        <option value="">Toutes les priorités</option>
+                                        <option value="low">Basse</option>
+                                        <option value="normal">Normale</option>
+                                        <option value="high">Haute</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th onclick="sortReclamations('id')" style="cursor: pointer;">
+                                            ID <i class="fas fa-sort"></i>
+                                        </th>
+                                        <th onclick="sortReclamations('sujet')" style="cursor: pointer;">
+                                            Sujet <i class="fas fa-sort"></i>
+                                        </th>
+                                        <th onclick="sortReclamations('user')" style="cursor: pointer;">
+                                            Utilisateur <i class="fas fa-sort"></i>
+                                        </th>
+                                        <th onclick="sortReclamations('priority')" style="cursor: pointer;">
+                                            Priorité <i class="fas fa-sort"></i>
+                                        </th>
+                                        <th onclick="sortReclamations('status')" style="cursor: pointer;">
+                                            Statut <i class="fas fa-sort"></i>
+                                        </th>
+                                        <th onclick="sortReclamations('date')" style="cursor: pointer;">
+                                            Date <i class="fas fa-sort"></i>
+                                        </th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="reclamationsTable">
+                                    <!-- Les données seront chargées ici -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="p-3 border-top d-flex justify-content-between align-items-center">
+                            <div>
+                                <span id="reclamationPaginationInfo">Affichage 0-0 sur 0 réclamations</span>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-outline-primary btn-sm" id="prevReclamationPage"
+                                    onclick="previousReclamationPage()" disabled>
+                                    <i class="fas fa-chevron-left"></i> Précédent
+                                </button>
+                                <button class="btn btn-outline-primary btn-sm" id="nextReclamationPage"
+                                    onclick="nextReclamationPage()" disabled>
+                                    Suivant <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ONGLET GESTION DES ARTICLES ET COMMENTAIRES -->
+            <div class="tab-pane fade" id="articles" role="tabpanel">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Gestion des Articles et Commentaires</h3>
+                    </div>
+                    <iframe src="articles/BackOffice/dashboard.php" style="width: 100%; height: 1000px; border: none; border-radius: 8px;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal pour modifier un utilisateur -->
+    <div class="modal fade" id="editUserModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modifier l'utilisateur</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editUserForm">
+                        <input type="hidden" id="editUserId">
+                        <div class="mb-3">
+                            <label for="editUserName" class="form-label">Nom</label>
+                            <input type="text" class="form-control" id="editUserName">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editUserEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="editUserEmail">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editUserRole" class="form-label">Rôle</label>
+                            <select class="form-control" id="editUserRole">
+                                <option value="user">Utilisateur</option>
+                                <option value="moderateur">Modérateur</option>
+                                <option value="admin">Administrateur</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary" onclick="updateUser()">Sauvegarder</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Ajouter/Modifier Événement -->
+    <div class="modal fade" id="eventModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="eventModalTitle">Ajouter un Événement</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="eventForm">
+                        <input type="hidden" id="editEventId">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="eventTitre" class="form-label">Titre *</label>
+                                <input type="text" class="form-control" id="eventTitre" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="eventCategorie" class="form-label">Catégorie</label>
+                                <select class="form-control" id="eventCategorie">
+                                    <option value="Atelier">Atelier</option>
+                                    <option value="Conférence">Conférence</option>
+                                    <option value="Salon">Salon</option>
+                                    <option value="Forum">Forum</option>
+                                    <option value="Activité">Activité</option>
+                                    <option value="Festival">Festival</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="eventDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="eventDescription" rows="3"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label for="eventDate" class="form-label">Date *</label>
+                                <input type="date" class="form-control" id="eventDate" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="eventHeureDebut" class="form-label">Heure Début</label>
+                                <input type="time" class="form-control" id="eventHeureDebut">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="eventHeureFin" class="form-label">Heure Fin</label>
+                                <input type="time" class="form-control" id="eventHeureFin">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="eventLieu" class="form-label">Lieu</label>
+                            <input type="text" class="form-control" id="eventLieu">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="eventPrix" class="form-label">Prix (DT)</label>
+                                <input type="number" class="form-control" id="eventPrix" min="0" step="0.01" value="0">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="eventPlaces" class="form-label">Places Total *</label>
+                                <input type="number" class="form-control" id="eventPlaces" min="1" required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary" onclick="saveEvent()">Sauvegarder</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Vérifier l'authentification avant de charger l'admin panel
+        document.addEventListener('DOMContentLoaded', function () {
+            const userData = localStorage.getItem('user');
+            if (!userData) {
+                alert('Vous devez être connecté pour accéder à cette page');
+                window.location.href = 'index.html';
+                return;
+            }
+            const user = JSON.parse(userData);
+            if (user.role !== 'admin') {
+                alert('Vous devez être administrateur pour accéder à cette page');
+                window.location.href = 'index.html';
+                return;
+            }
+            // Charger l'admin panel
+            loadAdminPanel();
+        });
+
+        // Charger le script admin après vérification
+        function loadAdminPanel() {
+            const script = document.createElement('script');
+            script.src = 'admin.js';
+            document.head.appendChild(script);
+
+            // Charger aussi le script des métriques
+            const metricsScript = document.createElement('script');
+            metricsScript.src = 'admin-metrics.js';
+            document.head.appendChild(metricsScript);
+
+            // Charger le script des réclamations
+            const reclamationsScript = document.createElement('script');
+            reclamationsScript.src = 'admin-reclamations.js';
+            document.head.appendChild(reclamationsScript);
+        }
+
+        // Validation JS pour le formulaire d'édition utilisateur
+        document.getElementById('editUserForm').addEventListener('submit', function (e) {
+            let valid = true;
+            const name = document.getElementById('editUserName').value.trim();
+            const email = document.getElementById('editUserEmail').value.trim();
+            const role = document.getElementById('editUserRole').value;
+            if (name === '') {
+                alert('Le nom est obligatoire.');
+                valid = false;
+            }
+            if (email === '' || !email.match(/^\S+@\S+\.\S+$/)) {
+                alert('Email invalide.');
+                valid = false;
+            }
+            if (role === '') {
+                alert('Le rôle est obligatoire.');
+                valid = false;
+            }
+            if (!valid) e.preventDefault();
+        });
+    </script>
+    <script src="js/dark-mode.js"></script>
+</body>
+
+</html>

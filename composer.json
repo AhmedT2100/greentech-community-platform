@@ -1,0 +1,16 @@
+{
+  "name": "ahmedt2100/greentech-community-platform",
+  "description": "GreenTechHub PHP community platform",
+  "type": "project",
+  "require": {
+    "php": ">=8.2",
+    "ext-pdo": "*",
+    "ext-pdo_mysql": "*",
+    "ext-curl": "*",
+    "ext-mbstring": "*",
+    "phpmailer/phpmailer": "^6.10"
+  },
+  "config": {
+    "sort-packages": true
+  }
+}
